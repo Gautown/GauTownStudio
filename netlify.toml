@@ -1,5 +1,5 @@
 [build]
-  command = "npm run tina:build"
+  command = "npm run tina:build:netlify"
   publish = "dist"
 
 [build.environment]
