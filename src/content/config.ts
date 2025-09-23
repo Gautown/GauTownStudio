@@ -42,6 +42,7 @@ const about = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    thumbnail: z.string().optional(),
     date: z.date().optional(),
   }),
 });

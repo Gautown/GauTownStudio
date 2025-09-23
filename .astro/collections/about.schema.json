@@ -10,6 +10,9 @@
         "description": {
           "type": "string"
         },
+        "thumbnail": {
+          "type": "string"
+        },
         "date": {
           "anyOf": [
             {

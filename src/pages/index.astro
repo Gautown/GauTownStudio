@@ -10,7 +10,7 @@ const abouts = await getCollection('about');
 const siteConfig = await getEntry('site-config', 'site');
 
 // 格式化日期的辅助函数
-function formatDate(date) {
+function formatDate(date: Date | string | undefined) {
   if (!date) return '未知日期';
   return new Date(date).toLocaleDateString('zh-CN', {
     year: 'numeric',
@@ -20,8 +20,8 @@ function formatDate(date) {
 }
 
 // 获取标签的辅助函数（根据集合类型）
-function getTags(collectionType) {
-  const tags = {
+function getTags(collectionType: string) {
+  const tags: Record<string, string> = {
     'warehouse': '仓库',
     'portfolio': '作品',
     'tools': '工具',
