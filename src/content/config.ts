@@ -75,5 +75,5 @@ export const collections = {
   tools,
   warehouse,
   about,
-  site_config: siteConfig,
+  'site-config': siteConfig,
 };

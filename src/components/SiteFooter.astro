@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 
-const siteConfig = await getEntry('site_config', 'site');
+const siteConfig = await getEntry('site-config', 'site');
 const friendLinks = siteConfig?.data.friendLinks || [];
 ---
 
@@ -10,7 +10,7 @@ const friendLinks = siteConfig?.data.friendLinks || [];
     <div class="footer-section">
       <h3>友情链接</h3>
       <ul class="friend-links">
-        {friendLinks.map((link) => (
+        {friendLinks.map((link: { name: string; url: string; description: string }) => (
           <li>
             <a href={link.url} target="_blank" rel="noopener noreferrer" title={link.description}>
               {link.name}

@@ -204,15 +204,7 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "site-config";
-  data: any;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"site_config": Record<string, {
-  id: string;
-  body?: string;
-  collection: "site_config";
-  data: InferEntrySchema<"site_config">;
+  data: InferEntrySchema<"site-config">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

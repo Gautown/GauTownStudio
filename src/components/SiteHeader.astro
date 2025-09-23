@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 
-// 使用正确的集合名称 'site_config' 而不是 'site-config'
+// 使用正确的集合名称 'site-config'
 const siteConfig = await getEntry('site-config', 'site');
 const navigation = siteConfig?.data.navigation || [];
 
