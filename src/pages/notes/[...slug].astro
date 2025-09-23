@@ -7,11 +7,12 @@ export async function getStaticPaths() {
   const notes = await getCollection('notes');
   return notes.map(note => ({
     params: { slug: note.slug },
-    props: { note },
+    props: { slug: note.slug },
   }));
 }
 
-const { note } = Astro.props;
+const { slug } = Astro.props;
+const note = await getEntry('notes', slug);
 ---
 
 <MainLayout title={note.data.title}>

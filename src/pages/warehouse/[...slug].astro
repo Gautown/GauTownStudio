@@ -7,11 +7,12 @@ export async function getStaticPaths() {
   const warehouses = await getCollection('warehouse');
   return warehouses.map(warehouse => ({
     params: { slug: warehouse.slug },
-    props: { warehouse },
+    props: { slug: warehouse.slug },
   }));
 }
 
-const { warehouse } = Astro.props;
+const { slug } = Astro.props;
+const warehouse = await getEntry('warehouse', slug);
 ---
 
 <MainLayout title={warehouse.data.title}>

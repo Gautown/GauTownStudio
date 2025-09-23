@@ -7,11 +7,12 @@ export async function getStaticPaths() {
   const tools = await getCollection('tools');
   return tools.map(tool => ({
     params: { slug: tool.slug },
-    props: { tool },
+    props: { slug: tool.slug },
   }));
 }
 
-const { tool } = Astro.props;
+const { slug } = Astro.props;
+const tool = await getEntry('tools', slug);
 ---
 
 <MainLayout title={tool.data.title}>

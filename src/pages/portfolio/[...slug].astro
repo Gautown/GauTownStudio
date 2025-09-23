@@ -7,11 +7,12 @@ export async function getStaticPaths() {
   const portfolios = await getCollection('portfolio');
   return portfolios.map(portfolio => ({
     params: { slug: portfolio.slug },
-    props: { portfolio },
+    props: { slug: portfolio.slug },
   }));
 }
 
-const { portfolio } = Astro.props;
+const { slug } = Astro.props;
+const portfolio = await getEntry('portfolio', slug);
 ---
 
 <MainLayout title={portfolio.data.title}>
@@ -26,7 +27,7 @@ const { portfolio } = Astro.props;
   <h1>{portfolio.data.title}</h1>
   
   <div class="portfolio-meta">
-    <p>{new Date(portfolio.data.date).toLocaleDateString('zh-CN')}</p>
+    <p>{portfolio.data.date ? new Date(portfolio.data.date).toLocaleDateString('zh-CN') : ''}</p>
   </div>
   
   <div class="portfolio-image"></div>
