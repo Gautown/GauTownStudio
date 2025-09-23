@@ -9,7 +9,7 @@
     "start": "astro dev",
     "tina:dev": "tinacms dev -c \"astro dev\"",
     "tina:build": "tinacms build && astro build",
-    "tina:build:netlify": "tinacms build --skip-cloud-checks && astro build"
+    "tina:build:netlify": "tinacms build && astro build"
   },
   "keywords": [
     "tinacms",
