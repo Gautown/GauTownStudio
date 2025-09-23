@@ -2,6 +2,7 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection, getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const warehouses = await getCollection('warehouse');
@@ -12,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.props;
-const warehouse = await getEntry('warehouse', slug);
+const warehouse = await getEntry('warehouse', slug) as CollectionEntry<'warehouse'>;
 ---
 
 <MainLayout title={warehouse.data.title}>
