@@ -1,0 +1,58 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const warehouses = await getCollection('warehouse');
+  return warehouses.map(warehouse => ({
+    params: { slug: warehouse.slug },
+    props: { warehouse },
+  }));
+}
+
+const { warehouse } = Astro.props;
+---
+
+<MainLayout title={warehouse.data.title}>
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '/warehouse', label: '仓库' },
+      { href: '#', label: '正文' }
+    ]} 
+  />
+  
+  <h1>{warehouse.data.title}</h1>
+  
+  <div class="warehouse-meta">
+    <p>{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : ''}</p>
+  </div>
+  
+  <div class="warehouse-image"></div>
+  
+  <div>
+    {warehouse.body}
+  </div>
+</MainLayout>
+
+<style>
+  h1 {
+    color: #2c3e50;
+  }
+  
+  .warehouse-meta {
+    color: #666;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .warehouse-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background-color: #f5f5f5;
+    margin-bottom: 2rem;
+  }
+</style>

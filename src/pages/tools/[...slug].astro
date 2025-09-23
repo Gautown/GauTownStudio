@@ -1,0 +1,58 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  return tools.map(tool => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+---
+
+<MainLayout title={tool.data.title}>
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '/tools', label: '工具集' },
+      { href: '#', label: '正文' }
+    ]} 
+  />
+  
+  <h1>{tool.data.title}</h1>
+  
+  <div class="tool-meta">
+    <p>{tool.data.date ? new Date(tool.data.date).toLocaleDateString('zh-CN') : ''}</p>
+  </div>
+  
+  <div class="tool-image"></div>
+  
+  <div>
+    {tool.body}
+  </div>
+</MainLayout>
+
+<style>
+  h1 {
+    color: #2c3e50;
+  }
+  
+  .tool-meta {
+    color: #666;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .tool-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background-color: #f5f5f5;
+    margin-bottom: 2rem;
+  }
+</style>

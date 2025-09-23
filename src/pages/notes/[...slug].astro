@@ -1,0 +1,37 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map(note => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+---
+
+<MainLayout title={note.data.title}>
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '/notes', label: '笔记列表' },
+      { href: '#', label: '正文' }
+    ]} 
+  />
+  
+  <h1>{note.data.title}</h1>
+  
+  <div>
+    {note.body}
+  </div>
+</MainLayout>
+
+<style>
+  h1 {
+    color: #2c3e50;
+  }
+</style>

@@ -1,0 +1,62 @@
+fragment PortfolioParts on Portfolio {
+  __typename
+  title
+  description
+  thumbnail
+  date
+  body
+}
+
+fragment ToolsParts on Tools {
+  __typename
+  title
+  description
+  thumbnail
+  date
+  body
+}
+
+fragment WarehouseParts on Warehouse {
+  __typename
+  title
+  description
+  thumbnail
+  date
+  body
+}
+
+fragment NotesParts on Notes {
+  __typename
+  title
+  body
+}
+
+fragment AboutParts on About {
+  __typename
+  title
+  description
+  date
+  body
+}
+
+fragment Site_configParts on Site_config {
+  __typename
+  title
+  subtitle
+  keywords
+  description
+  logo
+  siteName
+  copyright
+  navigation {
+    __typename
+    name
+    url
+  }
+  friendLinks {
+    __typename
+    name
+    url
+    description
+  }
+}

@@ -1,0 +1,35 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const abouts = await getCollection('about');
+---
+
+<MainLayout title="关于">
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '#', label: '关于' }
+    ]} 
+  />
+  
+  <h1>关于</h1>
+  
+  <ul class="abouts-list">
+    {abouts.map(about => (
+      <li class="about-item">
+        <a href={`/about/${about.slug}`} class="about-link">{about.data.title}</a>
+        <p>{about.data.description}</p>
+      </li>
+    ))}
+  </ul>
+  
+  {abouts.length === 0 && (
+    <p style="text-align: center;">暂无关于页面</p>
+  )}
+</MainLayout>
+
+<style>
+  /* about页面特定样式可以保留 */
+</style>

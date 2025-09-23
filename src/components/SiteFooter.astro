@@ -1,0 +1,90 @@
+---
+import { getEntry } from 'astro:content';
+
+const siteConfig = await getEntry('site_config', 'site');
+const friendLinks = siteConfig?.data.friendLinks || [];
+---
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>友情链接</h3>
+      <ul class="friend-links">
+        {friendLinks.map((link) => (
+          <li>
+            <a href={link.url} target="_blank" rel="noopener noreferrer" title={link.description}>
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <p class="copyright">
+        {siteConfig?.data.copyright || '© 2025 网站名称. 保留所有权利。'}
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.footer-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-section {
+  margin-bottom: 1.5rem;
+}
+
+.footer-section h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.friend-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.friend-links li {
+  margin-right: 1rem;
+}
+
+.friend-links a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.friend-links a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  color: #7f8c8d;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .friend-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .friend-links li {
+    margin-right: 0;
+  }
+}
+</style>

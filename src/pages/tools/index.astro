@@ -1,0 +1,41 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const tools = await getCollection('tools');
+---
+
+<MainLayout title="工具集">
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '#', label: '工具集' }
+    ]} 
+  />
+  
+  <h1>工具集</h1>
+  
+  <div class="tool-grid grid-5">
+    {tools.map(tool => (
+      <div class="tool-card">
+        <a href={`/tools/${tool.slug}`} aria-label={`查看工具：${tool.data.title}`}></a>
+        <div class="tool-image">
+          <img src="/images/noimg.gif" alt="暂无图片" />
+        </div>
+        <div class="tool-content">
+          <h2 class="tool-title">{tool.data.title}</h2>
+          <p class="tool-date">{tool.data.date ? new Date(tool.data.date).toLocaleDateString('zh-CN') : ''}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  {tools.length === 0 && (
+    <p style="text-align: center; margin-top: 2rem;">暂无工具集项目</p>
+  )}
+</MainLayout>
+
+<style>
+  /* tools页面特定样式可以保留 */
+</style>

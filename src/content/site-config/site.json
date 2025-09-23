@@ -1,0 +1,47 @@
+{
+  "title": "斑斓设绘",
+  "subtitle": "一个Blender学习、交流、分享站",
+  "keywords": "TinaCMS、Astro、内容管理、网站",
+  "description": "使用 TinaCMS 和 Astro 构建的现代化内容管理系统",
+  "logo": "/images/logo.svg",
+  "siteName": "GauTown Studio",
+  "copyright": "© 2025 GauTown Studio. 保留所有权利。",
+  "navigation": [
+    {
+      "name": "首页",
+      "url": "/"
+    },
+    {
+      "name": "作品",
+      "url": "/portfolio"
+    },
+    {
+      "name": "工具",
+      "url": "/tools"
+    },
+    {
+      "name": "仓库",
+      "url": "/warehouse"
+    },
+    {
+      "name": "笔记",
+      "url": "/notes"
+    },
+    {
+      "name": "关于",
+      "url": "/about"
+    }
+  ],
+  "friendLinks": [
+    {
+      "name": "TinaCMS官网",
+      "url": "https://tina.io",
+      "description": "TinaCMS官方网站"
+    },
+    {
+      "name": "Astro官网",
+      "url": "https://astro.build",
+      "description": "Astro官方网站"
+    }
+  ]
+}

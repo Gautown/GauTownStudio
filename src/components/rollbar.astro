@@ -1,0 +1,35 @@
+---
+// Rollbar组件 - 包含微信、QQ联系和返回顶部功能
+---
+
+<div class="rollbar">
+  <!-- 微信联系 -->
+  <div class="rollbar-item wechat-item">
+    <div class="rollbar-link">
+      <i class="bi bi-wechat"></i>
+    </div>
+    <div class="rollbar-tooltip wechat-qrcode">
+      <img src="/images/ui/wechat.png" alt="微信二维码" class="qrcode-image" />
+      <p>微信联系我</p>
+    </div>
+  </div>
+  
+  <!-- QQ联系 -->
+  <div class="rollbar-item qq-item">
+    <div class="rollbar-link">
+      <i class="bi bi-tencent-qq"></i>
+    </div>
+    <div class="rollbar-tooltip qq-qrcode">
+      <img src="/images/ui/qq.jpg" alt="QQ二维码" class="qrcode-image" />
+      <p>QQ联系我</p>
+    </div>
+  </div>
+  
+  <!-- 返回顶部 -->
+  <div class="rollbar-item totop-item">
+    <a href="#top" class="rollbar-link">
+    <i class="bi bi-arrow-up-square-fill"></i>
+    </a>
+  </div>
+</div>
+

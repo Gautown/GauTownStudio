@@ -1,0 +1,42 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const warehouses = await getCollection('warehouse');
+---
+
+<MainLayout title="仓库">
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '#', label: '仓库' }
+    ]} 
+  />
+  
+  <h1>仓库</h1>
+  
+  <div class="warehouse-grid grid-5">
+    {warehouses.map(warehouse => (
+      <div class="warehouse-card">
+        <a href={`/warehouse/${warehouse.slug}`} aria-label={`查看仓库项目：${warehouse.data.title}`}></a>
+        <div class="warehouse-image">
+          <img src="/images/noimg.gif" alt="暂无图片" />
+        </div>
+        <div class="warehouse-content">
+          <h2 class="warehouse-title">{warehouse.data.title}</h2>
+          <p class="warehouse-description">{warehouse.data.description}</p>
+          <p class="warehouse-date">{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : ''}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  {warehouses.length === 0 && (
+    <p style="text-align: center; margin-top: 2rem;">暂无仓库项目</p>
+  )}
+</MainLayout>
+
+<style>
+  /* warehouse页面特定样式可以保留 */
+</style>

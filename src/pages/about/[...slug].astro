@@ -1,0 +1,48 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const abouts = await getCollection('about');
+  return abouts.map(about => ({
+    params: { slug: about.slug },
+    props: { about },
+  }));
+}
+
+const { about } = Astro.props;
+---
+
+<MainLayout title={about.data.title}>
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '/about', label: '关于列表' },
+      { href: '#', label: '正文' }
+    ]} 
+  />
+  
+  <h1>{about.data.title}</h1>
+  
+  <div class="about-meta">
+    <p>{about.data.date ? new Date(about.data.date).toLocaleDateString('zh-CN') : ''}</p>
+  </div>
+  
+  <div>
+    {about.body}
+  </div>
+</MainLayout>
+
+<style>
+  h1 {
+    color: #2c3e50;
+  }
+  
+  .about-meta {
+    color: #666;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+</style>

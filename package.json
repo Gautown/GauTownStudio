@@ -1,0 +1,29 @@
+{
+  "name": "tinacms-starter",
+  "version": "1.0.0",
+  "description": "A clean TinaCMS starter project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build && astro build",
+    "start": "astro dev",
+    "tina:dev": "tinacms dev -c \"astro dev\"",
+    "tina:build": "tinacms build && astro build"
+  },
+  "keywords": [
+    "tinacms",
+    "astro",
+    "cms",
+    "static-site"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@tinacms/cli": "^1.5.0",
+    "astro": "^4.0.0",
+    "bootstrap-icons": "^1.13.1",
+    "jotai": "^2.0.0",
+    "tinacms": "^1.5.0",
+    "zustand": "^4.4.0"
+  }
+}
