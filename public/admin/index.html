@@ -52,6 +52,30 @@
             color: #e74c3c;
             font-size: 0.9rem;
         }
+        .instructions {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .instructions ol {
+            padding-left: 1.5rem;
+        }
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+        .instructions a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .instructions a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -59,28 +83,43 @@
         <h1>TinaCMS 管理后台</h1>
         <p>点击下方按钮进入 TinaCMS 云管理界面</p>
         <a href="#" id="tina-cms-link" class="btn">进入 TinaCMS</a>
-        <div class="note">
-            <p>注意：需要在 Netlify 环境变量中配置 NEXT_PUBLIC_TINA_CLIENT_ID</p>
+        <div class="instructions">
+            <h3>配置说明</h3>
+            <ol>
+                <li>访问 <a href="https://app.tina.io" target="_blank">Tina Cloud</a> 创建项目并获取凭据</li>
+                <li>在 Netlify 项目设置中添加环境变量：<br>
+                    <code>NEXT_PUBLIC_TINA_CLIENT_ID</code> 和 <code>TINA_TOKEN</code></li>
+                <li>重新部署网站以应用更改</li>
+            </ol>
         </div>
         <div id="error-message" class="error" style="display: none;"></div>
     </div>
 
     <script>
-        // Netlify 环境变量会在构建时替换这些占位符
-        const clientId = '%%NEXT_PUBLIC_TINA_CLIENT_ID%%';
+        // 检查是否在Netlify环境中（通过特定的环境变量）
+        function isNetlifyEnvironment() {
+            // 在Netlify中，环境变量会在构建时被替换
+            // 如果clientId仍然是占位符，说明环境变量未正确设置
+            return typeof process !== 'undefined' && process.env && process.env.NETLIFY === 'true';
+        }
         
         document.addEventListener('DOMContentLoaded', function() {
             const link = document.getElementById('tina-cms-link');
             const errorMessage = document.getElementById('error-message');
             
-            if (clientId && clientId !== '%%NEXT_PUBLIC_TINA_CLIENT_ID%%') {
-                // 如果有 clientId，设置跳转链接
+            // 从环境变量获取 clientId（在 Netlify 中配置）
+            // 注意：这个值需要在Netlify环境中正确配置
+            const clientId = '%%NEXT_PUBLIC_TINA_CLIENT_ID%%';
+            
+            // 检查clientId是否有效
+            if (clientId && clientId !== '%%NEXT_PUBLIC_TINA_CLIENT_ID%%' && clientId !== 'your_actual_tina_client_id_here') {
+                // 如果有有效的 clientId，设置跳转链接
                 link.href = `https://app.tina.io/projects/${clientId}`;
             } else {
-                // 如果没有 clientId，显示错误信息并阻止跳转
+                // 如果没有有效的 clientId，显示错误信息并阻止跳转
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    errorMessage.textContent = '错误：未配置 NEXT_PUBLIC_TINA_CLIENT_ID 环境变量';
+                    errorMessage.innerHTML = '错误：未配置有效的 NEXT_PUBLIC_TINA_CLIENT_ID 环境变量<br>请按照上方说明进行配置';
                     errorMessage.style.display = 'block';
                 });
             }
