@@ -13,6 +13,10 @@
   # 添加必要的环境变量
   NEXT_PUBLIC_TINA_BASEPATH = "/admin"
 
+# Netlify 环境变量替换配置
+[[plugins]]
+  package = "@netlify/plugin-functions-core"
+
 [functions]
   # TinaCMS 后端函数目录
   directory = ".netlify/functions/"

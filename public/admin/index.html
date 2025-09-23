@@ -48,6 +48,10 @@
             font-size: 0.9rem;
             color: #95a5a6;
         }
+        .error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -56,24 +60,31 @@
         <p>点击下方按钮进入 TinaCMS 云管理界面</p>
         <a href="#" id="tina-cms-link" class="btn">进入 TinaCMS</a>
         <div class="note">
-            <p>注意：需要在环境变量中配置 NEXT_PUBLIC_TINA_CLIENT_ID 才能正常访问</p>
+            <p>注意：需要在 Netlify 环境变量中配置 NEXT_PUBLIC_TINA_CLIENT_ID</p>
         </div>
+        <div id="error-message" class="error" style="display: none;"></div>
     </div>
 
     <script>
-        // 从环境变量获取 clientId（在 Netlify 中配置）
+        // Netlify 环境变量会在构建时替换这些占位符
         const clientId = '%%NEXT_PUBLIC_TINA_CLIENT_ID%%';
         
-        if (clientId && clientId !== '%%NEXT_PUBLIC_TINA_CLIENT_ID%%') {
-            // 如果有 clientId，直接跳转到 TinaCMS 云管理界面
-            document.getElementById('tina-cms-link').href = `https://app.tina.io/projects/${clientId}`;
-        } else {
-            // 如果没有 clientId，显示提示信息
-            document.getElementById('tina-cms-link').addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('请在 Netlify 环境变量中配置 NEXT_PUBLIC_TINA_CLIENT_ID');
-            });
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const link = document.getElementById('tina-cms-link');
+            const errorMessage = document.getElementById('error-message');
+            
+            if (clientId && clientId !== '%%NEXT_PUBLIC_TINA_CLIENT_ID%%') {
+                // 如果有 clientId，设置跳转链接
+                link.href = `https://app.tina.io/projects/${clientId}`;
+            } else {
+                // 如果没有 clientId，显示错误信息并阻止跳转
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    errorMessage.textContent = '错误：未配置 NEXT_PUBLIC_TINA_CLIENT_ID 环境变量';
+                    errorMessage.style.display = 'block';
+                });
+            }
+        });
     </script>
 </body>
 </html>
