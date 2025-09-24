@@ -3,18 +3,13 @@
   publish = "dist"
 
 [build.environment]
-  # TinaCMS 需要的环境变量
-  # 注意：NEXT_PUBLIC_TINA_CLIENT_ID 和 TINA_TOKEN 需要在 Netlify 后台设置
-  # 不要在配置文件中硬编码这些值，以避免安全风险
   NODE_VERSION = "18"
   TINA_PUBLIC_IS_LOCAL = "false"
   NETLIFY = "true"
   GITHUB_BRANCH = "main"
-  # 添加必要的环境变量
   NEXT_PUBLIC_TINA_BASEPATH = "/admin"
 
 [functions]
-  # TinaCMS 后端函数目录
   directory = ".netlify/functions/"
 
 [[redirects]]
