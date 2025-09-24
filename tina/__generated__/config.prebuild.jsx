@@ -4,6 +4,10 @@ var branch = process.env.NEXT_PUBLIC_TINA_BRANCH || process.env.GITHUB_BRANCH ||
 var clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "";
 var token = process.env.TINA_TOKEN || "";
 var config_default = defineConfig({
+  // 启用本地模式
+  local: true,
+  // 禁用云认证
+  enabled: true,
   branch,
   clientId,
   token,
