@@ -6,6 +6,11 @@ const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "";
 const token = process.env.TINA_TOKEN || "";
 
 export default defineConfig({
+  // 启用本地模式
+  local: true,
+  // 禁用云认证
+  enabled: process.env.NODE_ENV === "development",
+  
   branch,
   clientId,
   token,

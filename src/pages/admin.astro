@@ -49,6 +49,13 @@
       padding: 1rem;
       margin: 1rem 0;
     }
+    
+    .warning {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
   </style>
 </head>
 <body>
@@ -56,7 +63,7 @@
   <p>欢迎来到管理后台，您可以在这里管理您的网站内容。</p>
   
   <div class="info">
-    <p><strong>提示：</strong>点击下面的按钮进入TinaCMS管理界面。</p>
+    <p><strong>提示：</strong>您正在使用自托管模式的TinaCMS。</p>
   </div>
   
   <div class="card">
@@ -66,9 +73,17 @@
   </div>
   
   <div class="card">
-    <h2>开发信息</h2>
-    <p>如果您在本地开发，请确保TinaCMS开发服务器正在运行。</p>
-    <p>默认访问地址: <code>http://localhost:4321/admin/index.html</code></p>
+    <h2>自托管模式说明</h2>
+    <p>在自托管模式下，您可以：</p>
+    <ul>
+      <li>直接编辑 <code>src/content</code> 目录下的内容文件</li>
+      <li>通过TinaCMS界面进行可视化编辑（仅在本地开发时可用）</li>
+      <li>通过Git提交来更新网站内容</li>
+    </ul>
+  </div>
+  
+  <div class="warning">
+    <p><strong>注意：</strong>在Netlify部署环境中，TinaCMS的可视化编辑功能仅限本地开发使用。要更新内容，请直接编辑源文件并通过Git提交。</p>
   </div>
 </body>
 </html>

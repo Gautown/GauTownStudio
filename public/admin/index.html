@@ -81,15 +81,14 @@
 <body>
     <div class="container">
         <h1>TinaCMS 管理后台</h1>
-        <p>点击下方按钮进入 TinaCMS 云管理界面</p>
-        <a href="https://app.tina.io" id="tina-cms-link" class="btn" target="_blank">进入 TinaCMS</a>
+        <p>点击下方按钮进入 TinaCMS 本地管理界面</p>
+        <a href="/admin/index.html" id="tina-cms-link" class="btn">进入 TinaCMS</a>
         <div class="instructions">
             <h3>配置说明</h3>
             <ol>
-                <li>访问 <a href="https://app.tina.io" target="_blank">Tina Cloud</a> 创建项目并获取凭据</li>
-                <li>在 Netlify 项目设置中添加环境变量：<br>
-                    <code>NEXT_PUBLIC_TINA_CLIENT_ID</code> 和 <code>TINA_TOKEN</code></li>
-                <li>重新部署网站以应用更改</li>
+                <li>确保您在本地开发时使用 <code>npm run dev</code> 启动开发服务器</li>
+                <li>在Netlify部署时，CMS将在本地模式下运行</li>
+                <li>您可以直接编辑内容文件来更新网站内容</li>
             </ol>
         </div>
         <div id="error-message" class="error" style="display: none;"></div>
@@ -100,23 +99,8 @@
             const link = document.getElementById('tina-cms-link');
             const errorMessage = document.getElementById('error-message');
             
-            // 检查是否存在环境变量
-            const clientId = '%%NEXT_PUBLIC_TINA_CLIENT_ID%%';
-            
-            // 检查clientId是否有效（不是占位符）
-            if (clientId && clientId !== '%%NEXT_PUBLIC_TINA_CLIENT_ID%%' && clientId !== 'your_actual_tina_client_id_here') {
-                // 如果有有效的 clientId，设置跳转链接到具体项目
-                link.href = `https://app.tina.io/projects/${clientId}`;
-            } else {
-                // 如果没有有效的 clientId，跳转到TinaCMS主页，让用户自己选择项目
-                link.href = 'https://app.tina.io';
-                // 显示提示信息
-                errorMessage.innerHTML = '提示：未配置NEXT_PUBLIC_TINA_CLIENT_ID环境变量，将跳转到TinaCMS主页';
-                errorMessage.style.display = 'block';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
-            }
+            // 在自托管模式下，直接链接到本地管理界面
+            link.href = '/admin/index.html';
         });
     </script>
 </body>
