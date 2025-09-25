@@ -15,6 +15,12 @@
   <body>
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
     <script>
+      // 注册静态媒体库以解决"Missing external media library 'static'"错误
+      CMS.registerMediaLibrary({
+        name: 'static',
+        init: () => Promise.resolve()
+      });
+      
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {

@@ -13,12 +13,6 @@ show_preview_links: true
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-# 添加媒体库配置以更好地支持WebP格式
-media_library:
-  name: 'static'  # 添加name属性，指定使用静态文件媒体库
-  config:
-    max_file_size: 5242880  # 5MB in bytes
-
 collections:
   - name: "portfolio"
     label: "作品"
