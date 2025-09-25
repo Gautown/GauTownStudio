@@ -16,17 +16,17 @@ const warehouses = await getCollection('warehouse');
   
   <h1>仓库</h1>
   
-  <div class="warehouse-grid grid-5">
+  <div class="content-grid grid-5">
     {warehouses.map(warehouse => (
-      <div class="warehouse-card">
+      <div class="content-card">
         <a href={`/warehouse/${warehouse.slug}`} aria-label={`查看仓库项目：${warehouse.data.title}`}></a>
-        <div class="warehouse-image">
-          <img src="/images/noimg.gif" alt="暂无图片" />
+        <div class="card-image">
+          <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
         </div>
-        <div class="warehouse-content">
-          <h2 class="warehouse-title">{warehouse.data.title}</h2>
-          <p class="warehouse-description">{warehouse.data.description}</p>
-          <p class="warehouse-date">{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : ''}</p>
+        <div class="card-content">
+          <span class="card-tag">仓库</span>
+          <h3 class="card-title">{warehouse.data.title}</h3>
+          <p class="card-date">{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : '未知日期'}</p>
         </div>
       </div>
     ))}
