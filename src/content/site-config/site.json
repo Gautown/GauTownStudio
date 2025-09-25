@@ -1,11 +1,8 @@
 {
-  "title": "Blender Design  Painting",
-  "subtitle": "一个Blender学习、交流、分享站",
+  "copyright": "© 2025 GauTown Studio. 保留所有权利。",
   "keywords": "Decap CMS、Astro、内容管理、网站",
-  "description": "使用 Decap CMS 和 Astro 构建的现代化内容管理系统",
   "logo": "/images/logo.svg",
   "siteName": "GauTown Studio",
-  "copyright": "© 2025 GauTown Studio. 保留所有权利。",
   "navigation": [
     {
       "name": "首页",
@@ -32,16 +29,19 @@
       "url": "/about"
     }
   ],
+  "subtitle": "一个Blender学习、交流、分享站",
+  "title": "Blender Design  Painting",
   "friendLinks": [
     {
-      "name": "Decap CMS官网",
-      "url": "https://decapcms.org",
-      "description": "Decap CMS官方网站"
+      "name": "Github",
+      "url": "https://github.com/Gautown",
+      "description": "Gautown Studio的开源项目"
     },
     {
-      "name": "Astro官网",
-      "url": "https://astro.build",
-      "description": "Astro官方网站"
+      "name": "空位",
+      "url": "#",
+      "description": "请联系我"
     }
-  ]
+  ],
+  "description": "使用 Decap CMS 和 Astro 构建的现代化内容管理系统"
 }
