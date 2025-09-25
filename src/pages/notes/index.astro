@@ -16,16 +16,24 @@ const notes = await getCollection('notes');
   
   <h1>笔记</h1>
   
-  <ul class="notes-list">
+  <div class="content-grid grid-5">
     {notes.map(note => (
-      <li class="note-item">
-        <a href={`/notes/${note.slug}`} class="note-link">{note.data.title}</a>
-      </li>
+      <div class="content-card">
+        <a href={`/notes/${note.slug}`} aria-label={`查看笔记：${note.data.title}`}></a>
+        <div class="card-image">
+          <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
+        </div>
+        <div class="card-content">
+          <span class="card-tag">笔记</span>
+          <h3 class="card-title">{note.data.title}</h3>
+          <p class="card-date">未知日期</p>
+        </div>
+      </div>
     ))}
-  </ul>
+  </div>
   
   {notes.length === 0 && (
-    <p style="text-align: center;">暂无笔记</p>
+    <p style="text-align: center; margin-top: 2rem;">暂无笔记</p>
   )}
 </MainLayout>
 
