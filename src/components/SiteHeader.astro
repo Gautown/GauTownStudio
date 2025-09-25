@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import Search from './Search.astro';
 
 // 使用正确的集合名称 'site-config'
 const siteConfig = await getEntry('site-config', 'site');
@@ -50,7 +51,9 @@ console.log('Navigation data:', navigation);
             <span class="nav-link">导航项为空</span>
           </li>
         )}
-       
+        <li class="nav-item search-item">
+          <Search placeholder="搜索..." />
+        </li>
       </ul>
     </nav>
   </div>
@@ -142,6 +145,7 @@ console.log('Navigation data:', navigation);
   display: flex;
   list-style: none;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .nav-link {
@@ -168,6 +172,12 @@ console.log('Navigation data:', navigation);
 .admin-link:hover {
   background-color: #2980b9;
   color: white;
+}
+
+/* 搜索项样式 */
+.search-item {
+  display: flex;
+  align-items: center;
 }
 
 /* 移动端样式 */
@@ -212,6 +222,12 @@ console.log('Navigation data:', navigation);
   .nav-link:hover {
     background-color: #f8f9fa;
     color: #3498db;
+  }
+  
+  /* 搜索项移动端样式 */
+  .search-item {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #eee;
   }
   
   /* 当checkbox被选中时显示菜单 */

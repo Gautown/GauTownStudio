@@ -1,0 +1,221 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+// 获取所有内容集合
+const notes = await getCollection('notes');
+const portfolios = await getCollection('portfolio');
+const tools = await getCollection('tools');
+const warehouses = await getCollection('warehouse');
+const abouts = await getCollection('about');
+
+// 获取站点配置
+const siteConfig = await getEntry('site-config', 'site');
+
+// 格式化日期的辅助函数
+function formatDate(date: Date | string | undefined) {
+  if (!date) return '未知日期';
+  return new Date(date).toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+// 获取标签的辅助函数（根据集合类型）
+function getTags(collectionType: string) {
+  const tags: Record<string, string> = {
+    'warehouse': '仓库',
+    'portfolio': '作品',
+    'tools': '工具',
+    'notes': '笔记',
+    'about': '关于'
+  };
+  return tags[collectionType] || '内容';
+}
+
+// 获取所有内容项
+const allItems = [
+  ...notes.map(item => ({ ...item, type: 'notes' })),
+  ...portfolios.map(item => ({ ...item, type: 'portfolio' })),
+  ...tools.map(item => ({ ...item, type: 'tools' })),
+  ...warehouses.map(item => ({ ...item, type: 'warehouse' })),
+  ...abouts.map(item => ({ ...item, type: 'about' }))
+];
+
+// 搜索功能
+const { url } = Astro.request;
+const urlObj = new URL(url);
+const query = urlObj.searchParams.get('q') || '';
+
+// 过滤搜索结果
+const searchResults = query ? allItems.filter(item => {
+  const title = item.data.title || '';
+  const description = item.data.description || '';
+  const content = title + ' ' + description;
+  return content.toLowerCase().includes(query.toLowerCase());
+}) : [];
+---
+
+<MainLayout title={`${query ? `搜索结果: ${query}` : '搜索'} - ${siteConfig?.data.title}`} description={`关于"${query}"的搜索结果`}>
+  <div class="search-results-container">
+    <div class="search-header">
+      <h1>{query ? `搜索结果: "${query}"` : '搜索'}</h1>
+      {query && <p class="result-count">找到 {searchResults.length} 个结果</p>}
+    </div>
+    
+    {query ? (
+      searchResults.length > 0 ? (
+        <div class="search-results">
+          {searchResults.map((item) => {
+            const basePath = `/${item.type}`;
+            const itemPath = `${basePath}/${item.slug}`;
+            const tag = getTags(item.type);
+            
+            return (
+              <div class="search-result-item" key={`${item.type}-${item.slug}`}>
+                <div class="result-content">
+                  <div class="result-meta">
+                    <span class="result-tag">{tag}</span>
+                    <span class="result-date">{formatDate(item.data.date)}</span>
+                  </div>
+                  <h2 class="result-title">
+                    <a href={itemPath}>{item.data.title}</a>
+                  </h2>
+                  {item.data.description && (
+                    <p class="result-description">{item.data.description}</p>
+                  )}
+                  <a href={itemPath} class="result-link">查看详情 →</a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="no-results">
+          <h2>未找到相关结果</h2>
+          <p>抱歉，没有找到与 "{query}" 相关的内容。请尝试使用其他关键词搜索。</p>
+        </div>
+      )
+    ) : (
+      <div class="search-prompt">
+        <h2>请输入关键词开始搜索</h2>
+        <p>您可以搜索作品、工具、仓库、笔记等内容。</p>
+      </div>
+    )}
+  </div>
+</MainLayout>
+
+<style>
+.search-results-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.search-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.search-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.result-count {
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.search-result-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.search-result-item:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.result-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.result-tag {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.result-date {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.result-title {
+  margin: 0.5rem 0;
+}
+
+.result-title a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+.result-title a:hover {
+  color: #3498db;
+}
+
+.result-description {
+  color: #666;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.result-link {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.result-link:hover {
+  text-decoration: underline;
+}
+
+.no-results, .search-prompt {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.no-results h2, .search-prompt h2 {
+  margin-bottom: 1rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .search-results-container {
+    padding: 1rem;
+  }
+  
+  .search-result-item {
+    padding: 1rem;
+  }
+  
+  .result-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+</style>
