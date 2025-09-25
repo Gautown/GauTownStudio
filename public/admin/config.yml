@@ -7,6 +7,8 @@ backend:
     delete: 'Delete {{collection}} "{{slug}}"'
     uploadMedia: '[skip ci] Upload "{{path}}"'
     deleteMedia: '[skip ci] Delete "{{path}}"'
+  # GitHub仓库信息
+  repo: Gautown/GauTownStudio
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
