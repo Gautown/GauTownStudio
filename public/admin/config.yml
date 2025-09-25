@@ -3,6 +3,13 @@ backend:
   branch: main
   repo: Gautown/GauTownStudio
 
+# 本地化配置
+local_backend: true
+locale: 'zh_Hans'
+logo_url: '/images/logo.png'
+display_url: 'https://gautown.netlify.app'
+show_preview_links: true
+
 media_folder: "public/uploads"
 public_folder: "/uploads"
 

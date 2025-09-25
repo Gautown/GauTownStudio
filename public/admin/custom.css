@@ -1,0 +1,73 @@
+/* 自定义Decap CMS界面汉化 */
+.cms-editor-container .editor-preview .editor-preview-content h1::before,
+.cms-editor-container .editor-preview .editor-preview-content h2::before,
+.cms-editor-container .editor-preview .editor-preview-content h3::before,
+.cms-editor-preview .editor-preview-content h1::before,
+.cms-editor-preview .editor-preview-content h2::before,
+.cms-editor-preview .editor-preview-content h3::before {
+  display: none;
+}
+
+/* 隐藏默认的英文标签 */
+[class*="PaneHeader"] [class*="PaneHeaderHeading"] {
+  visibility: hidden;
+  position: relative;
+}
+
+[class*="PaneHeader"] [class*="PaneHeaderHeading"]::after {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "内容";
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 汉化其他常见英文标签 */
+[data-testid="sidebar-heading"] {
+  visibility: hidden;
+  position: relative;
+}
+
+[data-testid="sidebar-heading"]::after {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "集合";
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 汉化媒体库标签 */
+[data-testid="media-library-heading"] {
+  visibility: hidden;
+  position: relative;
+}
+
+[data-testid="media-library-heading"]::after {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "媒体库";
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 汉化工作流程标签 */
+[data-testid="workflow-heading"] {
+  visibility: hidden;
+  position: relative;
+}
+
+[data-testid="workflow-heading"]::after {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "工作流程";
+  font-size: 16px;
+  font-weight: 600;
+}
