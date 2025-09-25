@@ -10,8 +10,8 @@ logo_url: '/images/logo.png'
 display_url: 'https://gautown.netlify.app'
 show_preview_links: true
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+media_folder: "public/images"
+public_folder: "/images"
 
 collections:
   - name: "portfolio"
@@ -21,7 +21,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/uploads", public_folder: "/uploads" }
+      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/images/portfolio", public_folder: "/images/portfolio" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
@@ -32,7 +32,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/uploads", public_folder: "/uploads" }
+      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/images/tools", public_folder: "/images/tools" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
@@ -43,7 +43,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/uploads", public_folder: "/uploads" }
+      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/images/warehouse", public_folder: "/images/warehouse" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 

@@ -2,7 +2,7 @@
 title: Blender
 description: Blender 是一款免费开源的全能型 3D
   创作软件，涵盖建模、动画、渲染、合成、视频编辑等全流程功能，广泛应用于影视制作、游戏开发、产品设计、教育科研等领域。
-thumbnail: public/uploads/blender.webp
+thumbnail: /images/tools/blender.webp
 date: 2025-09-23T00:00:00.000Z
 ---
 ### 工具介绍
