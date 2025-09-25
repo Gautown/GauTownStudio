@@ -19,6 +19,13 @@
             });
           }
         });
+        
+        // 检查URL中是否有身份验证信息
+        if (window.location.hash && window.location.hash.indexOf('#access_token') !== -1) {
+          window.netlifyIdentity.on('login', () => {
+            window.location.href = '/admin/';
+          });
+        }
       }
     </script>
   </body>
