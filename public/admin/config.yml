@@ -1,8 +1,7 @@
 backend:
-  name: github
-  repo: Gautown/GauTownStudio
+  name: git-gateway
   branch: main
-  site_domain: gautown.netlify.app
+  repo: Gautown/GauTownStudio
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
