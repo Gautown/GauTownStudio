@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -14,6 +14,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.props;
 const warehouse = await getEntry('warehouse', slug) as CollectionEntry<'warehouse'>;
+const { Content } = await render(warehouse);
 ---
 
 <MainLayout title={warehouse.data.title}>
@@ -31,10 +32,12 @@ const warehouse = await getEntry('warehouse', slug) as CollectionEntry<'warehous
     <p>{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : ''}</p>
   </div>
   
-  <div class="warehouse-image"></div>
+  {warehouse.data.thumbnail && (
+    <img src={warehouse.data.thumbnail} alt={warehouse.data.title} class="warehouse-image" />
+  )}
   
   <div>
-    {warehouse.body}
+    <Content />
   </div>
 </MainLayout>
 

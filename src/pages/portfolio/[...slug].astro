@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -14,6 +14,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.props;
 const portfolio = await getEntry('portfolio', slug) as CollectionEntry<'portfolio'>;
+const { Content } = await render(portfolio);
 ---
 
 <MainLayout title={portfolio.data.title}>
@@ -31,10 +32,12 @@ const portfolio = await getEntry('portfolio', slug) as CollectionEntry<'portfoli
     <p>{portfolio.data.date ? new Date(portfolio.data.date).toLocaleDateString('zh-CN') : ''}</p>
   </div>
   
-  <div class="portfolio-image"></div>
+  {portfolio.data.thumbnail && (
+    <img src={portfolio.data.thumbnail} alt={portfolio.data.title} class="portfolio-image" />
+  )}
   
   <div>
-    {portfolio.body}
+    <Content />
   </div>
 </MainLayout>
 
