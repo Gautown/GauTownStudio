@@ -18,8 +18,7 @@ const tools = await getCollection('tools');
   
   <div class="content-grid grid-5">
     {tools.map(tool => (
-      <div class="content-card">
-        <a href={`/tools/${tool.slug}`} aria-label={`查看工具：${tool.data.title}`}></a>
+      <a href={`/tools/${tool.slug}`} class="content-card" aria-label={`查看工具：${tool.data.title}`}>
         <div class="card-image">
           <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
         </div>
@@ -28,7 +27,7 @@ const tools = await getCollection('tools');
           <h3 class="card-title">{tool.data.title}</h3>
           <p class="card-date">{tool.data.date ? new Date(tool.data.date).toLocaleDateString('zh-CN') : '未知日期'}</p>
         </div>
-      </div>
+      </a>
     ))}
   </div>
   

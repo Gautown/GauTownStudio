@@ -18,8 +18,7 @@ const portfolios = await getCollection('portfolio');
   
   <div class="content-grid grid-5">
     {portfolios.map(portfolio => (
-      <div class="content-card">
-        <a href={`/portfolio/${portfolio.slug}`} aria-label={`查看作品集：${portfolio.data.title}`}></a>
+      <a href={`/portfolio/${portfolio.slug}`} class="content-card" aria-label={`查看作品集：${portfolio.data.title}`}>
         <div class="card-image">
           <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
         </div>
@@ -28,7 +27,7 @@ const portfolios = await getCollection('portfolio');
           <h3 class="card-title">{portfolio.data.title}</h3>
           <p class="card-date">{portfolio.data.date ? new Date(portfolio.data.date).toLocaleDateString('zh-CN') : '未知日期'}</p>
         </div>
-      </div>
+      </a>
     ))}
   </div>
   

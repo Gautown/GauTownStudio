@@ -18,8 +18,7 @@ const warehouses = await getCollection('warehouse');
   
   <div class="content-grid grid-5">
     {warehouses.map(warehouse => (
-      <div class="content-card">
-        <a href={`/warehouse/${warehouse.slug}`} aria-label={`查看仓库项目：${warehouse.data.title}`}></a>
+      <a href={`/warehouse/${warehouse.slug}`} class="content-card" aria-label={`查看仓库项目：${warehouse.data.title}`}>
         <div class="card-image">
           <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
         </div>
@@ -28,7 +27,7 @@ const warehouses = await getCollection('warehouse');
           <h3 class="card-title">{warehouse.data.title}</h3>
           <p class="card-date">{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : '未知日期'}</p>
         </div>
-      </div>
+      </a>
     ))}
   </div>
   

@@ -42,8 +42,7 @@ function getTags(collectionType: string) {
     <h2 class="section-title">仓库</h2>
     <div class="content-grid grid-5">
       {warehouses.map(warehouse => (
-        <div class="content-card">
-          <a href={`/warehouse/${warehouse.slug}`} aria-label={`查看仓库：${warehouse.data.title}`}></a>
+        <a href={`/warehouse/${warehouse.slug}`} class="content-card" aria-label={`查看仓库：${warehouse.data.title}`}>
           <div class="card-image">
             {warehouse.data.thumbnail ? (
               <img src={warehouse.data.thumbnail} alt={warehouse.data.title} />
@@ -56,7 +55,7 @@ function getTags(collectionType: string) {
             <h3 class="card-title">{warehouse.data.title}</h3>
             <p class="card-date">{formatDate(warehouse.data.date)}</p>
           </div>
-        </div>
+        </a>
       ))}
     </div>
     <a href="/warehouse" class="view-all">查看所有仓库 →</a>
@@ -66,8 +65,7 @@ function getTags(collectionType: string) {
     <h2 class="section-title">作品集</h2>
     <div class="content-grid grid-5">
       {portfolios.map(portfolio => (
-        <div class="content-card">
-          <a href={`/portfolio/${portfolio.slug}`} aria-label={`查看作品集：${portfolio.data.title}`}></a>
+        <a href={`/portfolio/${portfolio.slug}`} class="content-card" aria-label={`查看作品集：${portfolio.data.title}`}>
           <div class="card-image">
             {portfolio.data.thumbnail ? (
               <img src={portfolio.data.thumbnail} alt={portfolio.data.title} />
@@ -80,7 +78,7 @@ function getTags(collectionType: string) {
             <h3 class="card-title">{portfolio.data.title}</h3>
             <p class="card-date">{formatDate(portfolio.data.date)}</p>
           </div>
-        </div>
+        </a>
       ))}
     </div>
     <a href="/portfolio" class="view-all">查看所有作品集 →</a>
@@ -90,8 +88,7 @@ function getTags(collectionType: string) {
     <h2 class="section-title">工具集</h2>
     <div class="content-grid grid-5">
       {tools.map(tool => (
-        <div class="content-card">
-          <a href={`/tools/${tool.slug}`} aria-label={`查看工具：${tool.data.title}`}></a>
+        <a href={`/tools/${tool.slug}`} class="content-card" aria-label={`查看工具：${tool.data.title}`}>
           <div class="card-image">
             {tool.data.thumbnail ? (
               <img src={tool.data.thumbnail} alt={tool.data.title} />
@@ -104,7 +101,7 @@ function getTags(collectionType: string) {
             <h3 class="card-title">{tool.data.title}</h3>
             <p class="card-date">{formatDate(tool.data.date)}</p>
           </div>
-        </div>
+        </a>
       ))}
     </div>
     <a href="/tools" class="view-all">查看所有工具 →</a>
@@ -114,8 +111,7 @@ function getTags(collectionType: string) {
     <h2 class="section-title">笔记</h2>
     <div class="content-grid grid-5">
       {notes.map(note => (
-        <div class="content-card">
-          <a href={`/notes/${note.slug}`} aria-label={`查看笔记：${note.data.title}`}></a>
+        <a href={`/notes/${note.slug}`} class="content-card" aria-label={`查看笔记：${note.data.title}`}>
           <div class="card-image">
             <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
           </div>
@@ -124,7 +120,7 @@ function getTags(collectionType: string) {
             <h3 class="card-title">{note.data.title}</h3>
             <p class="card-date">未知日期</p>
           </div>
-        </div>
+        </a>
       ))}
     </div>
     <a href="/notes" class="view-all">查看所有笔记 →</a>

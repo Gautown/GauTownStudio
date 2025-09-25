@@ -18,8 +18,7 @@ const abouts = await getCollection('about');
   
   <div class="content-grid grid-5">
     {abouts.map(about => (
-      <div class="content-card">
-        <a href={`/about/${about.slug}`} aria-label={`查看关于页面：${about.data.title}`}></a>
+      <a href={`/about/${about.slug}`} class="content-card" aria-label={`查看关于页面：${about.data.title}`}>
         <div class="card-image">
           {about.data.thumbnail ? (
             <img src={about.data.thumbnail} alt={about.data.title} />
@@ -32,7 +31,7 @@ const abouts = await getCollection('about');
           <h3 class="card-title">{about.data.title}</h3>
           <p class="card-date">未知日期</p>
         </div>
-      </div>
+      </a>
     ))}
   </div>
   

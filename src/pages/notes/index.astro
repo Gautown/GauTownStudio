@@ -18,8 +18,7 @@ const notes = await getCollection('notes');
   
   <div class="content-grid grid-5">
     {notes.map(note => (
-      <div class="content-card">
-        <a href={`/notes/${note.slug}`} aria-label={`查看笔记：${note.data.title}`}></a>
+      <a href={`/notes/${note.slug}`} class="content-card" aria-label={`查看笔记：${note.data.title}`}>
         <div class="card-image">
           <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
         </div>
@@ -28,7 +27,7 @@ const notes = await getCollection('notes');
           <h3 class="card-title">{note.data.title}</h3>
           <p class="card-date">未知日期</p>
         </div>
-      </div>
+      </a>
     ))}
   </div>
   
