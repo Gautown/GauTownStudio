@@ -290,8 +290,8 @@ body {
 
 .view-all {
   display: block;
-  margin-top: 1rem;
-  width: 100%;
+  width: fit-content;
+  margin: 1rem auto;
 }
 
 /* 关于版块的图文布局样式 */
