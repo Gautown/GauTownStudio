@@ -21,7 +21,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } } }
+      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/uploads", public_folder: "/uploads" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
@@ -32,7 +32,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } } }
+      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/uploads", public_folder: "/uploads" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
@@ -43,7 +43,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } } }
+      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/uploads", public_folder: "/uploads" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
