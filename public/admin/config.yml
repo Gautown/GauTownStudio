@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: Gautown/GauTownStudio
+  name: git-gateway
   branch: main
 
 media_folder: "public/uploads"
