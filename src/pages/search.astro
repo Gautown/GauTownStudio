@@ -73,21 +73,20 @@ const searchResults = query ? allItems.filter(item => {
             const tag = getTags(item.type);
             
             return (
-              <div class="search-result-item" key={`${item.type}-${item.slug}`}>
+              <a href={itemPath} class="search-result-item" key={`${item.type}-${item.slug}`} aria-label={`查看${tag}：${item.data.title}`}>
                 <div class="result-content">
                   <div class="result-meta">
                     <span class="result-tag">{tag}</span>
                     <span class="result-date">{formatDate(item.data.date)}</span>
                   </div>
                   <h2 class="result-title">
-                    <a href={itemPath}>{item.data.title}</a>
+                    {item.data.title}
                   </h2>
                   {item.data.description && (
                     <p class="result-description">{item.data.description}</p>
                   )}
-                  <a href={itemPath} class="result-link">查看详情 →</a>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
@@ -138,6 +137,9 @@ const searchResults = query ? allItems.filter(item => {
   border-radius: 8px;
   padding: 1.5rem;
   transition: box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .search-result-item:hover {
@@ -166,32 +168,14 @@ const searchResults = query ? allItems.filter(item => {
 
 .result-title {
   margin: 0.5rem 0;
-}
-
-.result-title a {
-  color: #2c3e50;
-  text-decoration: none;
   font-size: 1.3rem;
-}
-
-.result-title a:hover {
-  color: #3498db;
+  color: #2c3e50;
 }
 
 .result-description {
   color: #666;
   margin: 0.5rem 0;
   line-height: 1.6;
-}
-
-.result-link {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.result-link:hover {
-  text-decoration: underline;
 }
 
 .no-results, .search-prompt {
@@ -203,7 +187,7 @@ const searchResults = query ? allItems.filter(item => {
   margin-bottom: 1rem;
 }
 
-/* 响应式设计 */
+/* 响应式调整 */
 @media (max-width: 768px) {
   .search-results-container {
     padding: 1rem;
