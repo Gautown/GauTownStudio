@@ -1,8 +1,8 @@
 {
   "title": "Blender Design  Painting",
   "subtitle": "一个Blender学习、交流、分享站",
-  "keywords": "TinaCMS、Astro、内容管理、网站",
-  "description": "使用 TinaCMS 和 Astro 构建的现代化内容管理系统",
+  "keywords": "Decap CMS、Astro、内容管理、网站",
+  "description": "使用 Decap CMS 和 Astro 构建的现代化内容管理系统",
   "logo": "/images/logo.svg",
   "siteName": "GauTown Studio",
   "copyright": "© 2025 GauTown Studio. 保留所有权利。",
@@ -34,9 +34,9 @@
   ],
   "friendLinks": [
     {
-      "name": "TinaCMS官网",
-      "url": "https://tina.io",
-      "description": "TinaCMS官方网站"
+      "name": "Decap CMS官网",
+      "url": "https://decapcms.org",
+      "description": "Decap CMS官方网站"
     },
     {
       "name": "Astro官网",

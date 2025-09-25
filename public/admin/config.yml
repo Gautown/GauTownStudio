@@ -1,0 +1,86 @@
+backend:
+   name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "portfolio"
+    label: "作品"
+    folder: "src/content/portfolio"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "string" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "tools"
+    label: "工具"
+    folder: "src/content/tools"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "string" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "warehouse"
+    label: "仓库"
+    folder: "src/content/warehouse"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "string" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "notes"
+    label: "笔记"
+    folder: "src/content/notes"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "about"
+    label: "关于"
+    folder: "src/content/about"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "site_config"
+    label: "网站设置"
+    files:
+      - name: "site"
+        label: "网站设置"
+        file: "src/content/site-config/site.json"
+        fields:
+          - { label: "网站标题", name: "title", widget: "string" }
+          - { label: "副标题", name: "subtitle", widget: "string" }
+          - { label: "关键字", name: "keywords", widget: "string" }
+          - { label: "关键字描述", name: "description", widget: "string" }
+          - { label: "头部Logo", name: "logo", widget: "string" }
+          - { label: "网站名称", name: "siteName", widget: "string" }
+          - { label: "版权信息", name: "copyright", widget: "string" }
+          - label: "导航菜单"
+            name: "navigation"
+            widget: "list"
+            fields:
+              - { label: "菜单名称", name: "name", widget: "string" }
+              - { label: "链接地址", name: "url", widget: "string" }
+          - label: "友情链接"
+            name: "friendLinks"
+            widget: "list"
+            fields:
+              - { label: "链接名称", name: "name", widget: "string" }
+              - { label: "链接地址", name: "url", widget: "string" }
+              - { label: "链接描述", name: "description", widget: "string" }

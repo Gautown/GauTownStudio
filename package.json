@@ -1,18 +1,17 @@
 {
-  "name": "tinacms-starter",
+  "name": "decap-cms-starter",
   "version": "1.0.0",
-  "description": "A clean TinaCMS starter project",
+  "description": "A clean Decap CMS starter project",
   "main": "index.js",
   "scripts": {
-    "dev": "tinacms dev -c \"astro dev\"",
-    "build": "tinacms build && astro build",
+    "dev": "astro dev",
+    "build": "astro build",
     "start": "astro dev",
-    "tina:dev": "tinacms dev -c \"astro dev\"",
-    "tina:build": "tinacms build && astro build",
-    "tina:build:netlify": "tinacms build && astro build"
+    "cms:dev": "astro dev",
+    "cms:build": "astro build"
   },
   "keywords": [
-    "tinacms",
+    "decap-cms",
     "astro",
     "cms",
     "static-site"
@@ -21,10 +20,9 @@
   "license": "MIT",
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@tinacms/cli": "^1.5.0",
     "bootstrap-icons": "^1.13.1",
+    "decap-cms-app": "^3.8.3",
     "jotai": "^2.0.0",
-    "tinacms": "^1.5.0",
     "typescript": "^5.9.2",
     "zustand": "^4.4.0"
   },

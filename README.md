@@ -1,6 +1,6 @@
-# GauTown Studio - TinaCMS 内容管理系统
+# GauTown Studio - Decap CMS 内容管理系统
 
-这是一个使用 TinaCMS 和 Astro 构建的现代化内容管理系统。
+这是一个使用 Decap CMS 和 Astro 构建的现代化内容管理系统。
 
 ## 快速开始
 
@@ -9,38 +9,25 @@
    npm install
    ```
 
-2. 配置环境变量:
-   - 复制 `.env.example` 到 `.env.local`
-   - 从 [Tina Cloud](https://app.tina.io/projects) 获取并填写您的 TinaCMS 凭据
+2. 启动开发服务器:
    ```bash
-   cp .env.example .env.local
-   # 编辑 .env.local 文件，填入您的凭据
-   ```
-
-3. 启动开发服务器:
-   ```bash
-   npm run tina:dev
+   npm run dev
    ```
 
 4. 访问网站: http://localhost:4321
-5. 访问管理后台: http://localhost:4321/admin/index.html
+5. 访问管理后台: http://localhost:4322/admin.html
 
 ## 项目结构
 
 - `src/content/` - 内容文件 (Markdown)
 - `src/pages/` - Astro 页面文件
-- `tina/` - TinaCMS 配置
+- `public/admin/` - Decap CMS 配置
 - `src/styles/` - 自定义样式文件
 - `netlify.toml` - Netlify 部署配置
 
 ## 环境变量配置
 
-您需要设置以下环境变量:
-
-- `NEXT_PUBLIC_TINA_CLIENT_ID` - 您的 TinaCMS 客户端 ID
-- `TINA_TOKEN` - 您的 TinaCMS token
-
-本地开发时，可以在 `.env.local` 文件中设置这些变量。
+使用 Decap CMS 需要配置身份验证，详细信息请参考 [Decap CMS 官方文档](https://decapcms.org/docs/authentication-backends/)。
 
 ## 内容管理
 
@@ -65,25 +52,8 @@
 - `NEXT_PUBLIC_TINA_CLIENT_ID`
 - `TINA_TOKEN`
 
-构建项目请使用 `npm run tina:build` 命令。
+构建项目请使用 `npm run build` 命令。
 
 ## 故障排除
 
-如果遇到 "Failed loading TinaCMS assets" 错误:
-
-1. 确保已设置所需的环境变量
-2. 检查您的 TinaCMS 凭据是否正确
-3. 确保使用 `npm run tina:dev` 而不是 `npm run dev` 进行开发
-4. 清除缓存并重试:
-   ```bash
-   # Windows 用户
-   rmdir /s node_modules\.cache
-
-   # Mac/Linux 用户
-   rm -rf node_modules/.cache
-   ```
-
-生产环境访问管理后台:
-- 地址: https://your-domain.com/admin/index.html
-
-如需更多帮助，请访问 [TinaCMS 官方文档](https://tina.io/docs/)。
+如需更多帮助，请访问 [Decap CMS 官方文档](https://decapcms.org/docs/)。
