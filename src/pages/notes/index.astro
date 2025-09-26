@@ -20,7 +20,12 @@ const notes = await getCollection('notes');
     {notes.map(note => (
       <a href={`/notes/${note.slug}`} class="content-card" aria-label={`查看笔记：${note.data.title}`}>
         <div class="card-image">
-          <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
+          <img 
+            src={note.data.thumbnail || "/images/noimg.gif"} 
+            alt={note.data.title} 
+            onerror="this.src='/images/noimg.gif'" 
+            class="placeholder-image" 
+          />
         </div>
         <div class="card-content">
           <span class="card-tag">笔记</span>

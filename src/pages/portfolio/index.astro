@@ -20,7 +20,12 @@ const portfolios = await getCollection('portfolio');
     {portfolios.map(portfolio => (
       <a href={`/portfolio/${portfolio.slug}`} class="content-card" aria-label={`查看作品集：${portfolio.data.title}`}>
         <div class="card-image">
-          <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
+          <img 
+            src={portfolio.data.thumbnail || "/images/noimg.gif"} 
+            alt={portfolio.data.title} 
+            onerror="this.src='/images/noimg.gif'" 
+            class="placeholder-image" 
+          />
         </div>
         <div class="card-content">
           <span class="card-tag">作品</span>

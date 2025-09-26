@@ -20,7 +20,12 @@ const warehouses = await getCollection('warehouse');
     {warehouses.map(warehouse => (
       <a href={`/warehouse/${warehouse.slug}`} class="content-card" aria-label={`查看仓库项目：${warehouse.data.title}`}>
         <div class="card-image">
-          <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
+          <img 
+            src={warehouse.data.thumbnail || "/images/noimg.gif"} 
+            alt={warehouse.data.title} 
+            onerror="this.src='/images/noimg.gif'" 
+            class="placeholder-image" 
+          />
         </div>
         <div class="card-content">
           <span class="card-tag">仓库</span>

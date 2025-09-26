@@ -20,7 +20,12 @@ const tools = await getCollection('tools');
     {tools.map(tool => (
       <a href={`/tools/${tool.slug}`} class="content-card" aria-label={`查看工具：${tool.data.title}`}>
         <div class="card-image">
-          <img src="/images/noimg.gif" alt="暂无图片" class="placeholder-image" />
+          <img 
+            src={tool.data.thumbnail || "/images/noimg.gif"} 
+            alt={tool.data.title} 
+            onerror="this.src='/images/noimg.gif'" 
+            class="placeholder-image" 
+          />
         </div>
         <div class="card-content">
           <span class="card-tag">工具</span>

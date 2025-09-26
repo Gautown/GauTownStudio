@@ -172,14 +172,6 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"divider": Record<string, {
-  id: string;
-  body?: string;
-  collection: "divider";
-  data: any;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "notes": Record<string, {
   id: string;
   render(): Render[".md"];
