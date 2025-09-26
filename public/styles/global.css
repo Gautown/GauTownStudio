@@ -722,29 +722,6 @@ body {
   }
 }
 
-/* 内容布局样式 */
-.content-layout {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.content-wrapper {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.content-main {
-  flex: 3; /* 占据3/4宽度 */
-  min-width: 0; /* 防止内容溢出 */
-}
-
-.content-sidebar {
-  flex: 1; /* 占据1/4宽度 */
-  min-width: 0; /* 防止内容溢出 */
-}
-
 /* 侧边栏样式 */
 .sidebar {
   width: 100%;
@@ -862,4 +839,27 @@ body {
   .content-layout {
     padding: 0 1rem;
   }
+}
+
+/* 内容布局样式 */
+.content-layout {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.content-main {
+  flex: 3; /* 占据3/4宽度 */
+  min-width: 0; /* 防止内容溢出 */
+}
+
+.content-sidebar {
+  flex: 1; /* 占据1/4宽度 */
+  min-width: 0; /* 防止内容溢出 */
 }
