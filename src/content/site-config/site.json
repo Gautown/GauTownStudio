@@ -1,6 +1,6 @@
 {
   "copyright": "© 2025 GauTown Studio. 保留所有权利。",
-  "keywords": "一个Blender学习、交流、分享站",
+  "keywords": "一个三维设计学习、交流、分享站",
   "logo": "/images/logo.svg",
   "siteName": "GauTown Studio",
   "navigation": [
@@ -29,7 +29,7 @@
       "url": "/about"
     }
   ],
-  "subtitle": "一个Blender学习、交流、分享站",
+  "subtitle": "一个三维设计学习、交流、分享站",
   "title": "斑斓 - 设计 - 绘画",
   "friendLinks": [
     {
@@ -43,5 +43,5 @@
       "description": "请联系我"
     }
   ],
-  "description": "一个Blender学习、交流、分享站"
+  "description": "一个三维设计学习、交流、分享站"
 }
