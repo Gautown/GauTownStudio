@@ -4,6 +4,9 @@ const notes = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    description: z.string().optional(),
+    thumbnail: z.string().optional(),
+    date: z.date().optional(),
   }),
 });
 

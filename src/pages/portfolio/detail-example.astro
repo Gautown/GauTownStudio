@@ -3,33 +3,30 @@ import ContentLayout from '../../layouts/ContentLayout.astro';
 import { getCollection, getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
-export async function getStaticPaths() {
-  const portfolios = await getCollection('portfolio');
-  return portfolios.map(portfolio => ({
-    params: { slug: portfolio.slug },
-    props: { slug: portfolio.slug },
-  }));
-}
+// 示例数据 - 在实际使用中，这些数据会从内容集合中获取
+const portfolio = {
+  data: {
+    title: "示例项目标题",
+    date: new Date(),
+  },
+  body: "# 示例内容\n\n这是示例项目的详细内容。\n\n## 项目介绍\n\n这是一个使用新布局的示例项目。",
+};
 
-const { slug } = Astro.props;
-const portfolio = await getEntry('portfolio', slug) as CollectionEntry<'portfolio'>;
-const { Content } = await render(portfolio);
-
-// 获取随机推荐内容（示例数据）
+// 模拟随机推荐数据
 const randomRecommendations = [
   { title: "推荐作品1", url: "/portfolio/recommend1", type: "作品" },
   { title: "推荐工具1", url: "/tools/recommend1", type: "工具" },
   { title: "推荐笔记1", url: "/notes/recommend1", type: "笔记" },
 ];
 
-// 获取最新文章（示例数据）
+// 模拟最新文章数据
 const latestArticles = [
   { title: "最新作品1", url: "/portfolio/latest1", date: "2023-06-01" },
   { title: "最新工具1", url: "/tools/latest1", date: "2023-05-28" },
   { title: "最新笔记1", url: "/notes/latest1", date: "2023-05-25" },
 ];
 
-// 获取热门标签（示例数据）
+// 模拟热门标签数据
 const popularTags = [
   { name: "前端", count: 15, url: "/tags/frontend" },
   { name: "设计", count: 12, url: "/tags/design" },
@@ -40,7 +37,7 @@ const popularTags = [
 
 <ContentLayout 
   title={portfolio.data.title}
-  description={portfolio.data.description}
+  description="这是一个示例项目详情页面"
   breadcrumbLinks={[
     { href: '/', label: '首页' },
     { href: '/portfolio', label: '作品集' },
@@ -57,12 +54,17 @@ const popularTags = [
       <p>{portfolio.data.date ? new Date(portfolio.data.date).toLocaleDateString('zh-CN') : ''}</p>
     </div>
     
-    {portfolio.data.thumbnail && (
-      <img src={portfolio.data.thumbnail} alt={portfolio.data.title} class="portfolio-image" />
-    )}
-    
     <div class="portfolio-content">
-      <Content />
+      <p>这是项目的主要内容区域。在这里展示项目的详细信息。</p>
+      <p>内容可以包括项目介绍、技术栈、实现细节、遇到的挑战和解决方案等。</p>
+      <h2>项目亮点</h2>
+      <ul>
+        <li>使用了现代化的技术栈</li>
+        <li>具有响应式设计</li>
+        <li>优化了用户体验</li>
+      </ul>
+      <h2>技术实现</h2>
+      <p>详细描述项目的技术实现过程...</p>
     </div>
   </article>
 </ContentLayout>
@@ -80,15 +82,21 @@ const popularTags = [
     margin-bottom: 2rem;
   }
   
-  .portfolio-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    background-color: #f5f5f5;
-    margin-bottom: 2rem;
-  }
-  
   .portfolio-content {
     line-height: 1.8;
+  }
+  
+  .portfolio-content h2 {
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .portfolio-content ul {
+    padding-left: 1.5rem;
+  }
+  
+  .portfolio-content li {
+    margin-bottom: 0.5rem;
   }
 </style>

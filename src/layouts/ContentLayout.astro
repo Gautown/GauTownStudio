@@ -1,0 +1,128 @@
+---
+import MainLayout from './MainLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+interface Props {
+  /**
+   * 页面标题
+   */
+  title?: string;
+  
+  /**
+   * 页面描述
+   */
+  description?: string;
+  
+  /**
+   * 面包屑导航链接
+   */
+  breadcrumbLinks?: {
+    href: string;
+    label: string;
+  }[];
+  
+  /**
+   * 随机推荐内容
+   */
+  randomRecommendations?: {
+    title: string;
+    url: string;
+    type: string;
+  }[];
+  
+  /**
+   * 最新文章
+   */
+  latestArticles?: {
+    title: string;
+    url: string;
+    date: string;
+  }[];
+  
+  /**
+   * 热门标签
+   */
+  popularTags?: {
+    name: string;
+    count: number;
+    url: string;
+  }[];
+}
+
+const { 
+  title = '',
+  description = '',
+  breadcrumbLinks = [],
+  randomRecommendations = [],
+  latestArticles = [],
+  popularTags = []
+} = Astro.props;
+---
+
+<MainLayout title={title} description={description}>
+  <div class="content-layout">
+    <!-- 头部导航已在MainLayout中包含 -->
+    
+    <!-- 面包屑导航 -->
+    {breadcrumbLinks.length > 0 && (
+      <Breadcrumb links={breadcrumbLinks} />
+    )}
+    
+    <div class="content-wrapper">
+      <!-- 正文内容 -->
+      <main class="content-main">
+        <slot />
+      </main>
+      
+      <!-- 右侧边栏 -->
+      <aside class="content-sidebar">
+        <Sidebar 
+          randomRecommendations={randomRecommendations}
+          latestArticles={latestArticles}
+          popularTags={popularTags}
+        />
+      </aside>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .content-layout {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .content-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .content-main {
+    flex: 3; /* 占据3/4宽度 */
+    min-width: 0; /* 防止内容溢出 */
+  }
+  
+  .content-sidebar {
+    flex: 1; /* 占据1/4宽度 */
+    min-width: 0; /* 防止内容溢出 */
+  }
+  
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+    
+    .content-main,
+    .content-sidebar {
+      flex: 1; /* 在移动端都占据100%宽度 */
+    }
+    
+    .content-layout {
+      padding: 0 1rem;
+    }
+  }
+</style>

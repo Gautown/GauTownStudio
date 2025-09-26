@@ -1,6 +1,5 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
+import ContentLayout from '../../layouts/ContentLayout.astro';
 import { getCollection, getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -15,26 +14,58 @@ export async function getStaticPaths() {
 const { slug } = Astro.props;
 const note = await getEntry('notes', slug) as CollectionEntry<'notes'>;
 const { Content } = await render(note);
+
+// 获取随机推荐内容（示例数据）
+const randomRecommendations = [
+  { title: "推荐作品1", url: "/portfolio/recommend1", type: "作品" },
+  { title: "推荐工具1", url: "/tools/recommend1", type: "工具" },
+  { title: "推荐笔记1", url: "/notes/recommend1", type: "笔记" },
+];
+
+// 获取最新文章（示例数据）
+const latestArticles = [
+  { title: "最新作品1", url: "/portfolio/latest1", date: "2023-06-01" },
+  { title: "最新工具1", url: "/tools/latest1", date: "2023-05-28" },
+  { title: "最新笔记1", url: "/notes/latest1", date: "2023-05-25" },
+];
+
+// 获取热门标签（示例数据）
+const popularTags = [
+  { name: "前端", count: 15, url: "/tags/frontend" },
+  { name: "设计", count: 12, url: "/tags/design" },
+  { name: "React", count: 10, url: "/tags/react" },
+  { name: "Node.js", count: 8, url: "/tags/nodejs" },
+];
 ---
 
-<MainLayout title={note.data.title}>
-  <Breadcrumb 
-    links={[
-      { href: '/', label: '首页' },
-      { href: '/notes', label: '笔记列表' },
-      { href: '#', label: '正文' }
-    ]} 
-  />
-  
-  <h1>{note.data.title}</h1>
-  
-  <div>
-    <Content />
-  </div>
-</MainLayout>
+<ContentLayout 
+  title={note.data.title}
+  description={note.data.description || ''}
+  breadcrumbLinks={[
+    { href: '/', label: '首页' },
+    { href: '/notes', label: '笔记' },
+    { href: '#', label: '正文' }
+  ]}
+  randomRecommendations={randomRecommendations}
+  latestArticles={latestArticles}
+  popularTags={popularTags}
+>
+  <article class="note-detail">
+    <h1>{note.data.title}</h1>
+    
+    <div class="note-content">
+      <Content />
+    </div>
+  </article>
+</ContentLayout>
 
 <style>
-  h1 {
+  .note-detail h1 {
     color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .note-content {
+    line-height: 1.8;
   }
 </style>
