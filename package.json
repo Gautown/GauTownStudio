@@ -8,7 +8,8 @@
     "build": "astro build",
     "start": "astro dev",
     "cms:dev": "astro dev",
-    "cms:build": "astro build"
+    "cms:build": "astro build",
+    "cms:dev:local": "astro dev --port 4321"
   },
   "keywords": [
     "decap-cms",

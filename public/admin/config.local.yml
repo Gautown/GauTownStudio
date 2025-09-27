@@ -1,13 +1,14 @@
+# Decap CMS本地开发配置文件
+# 用于本地开发时的配置，不依赖远程Git Gateway
+
 backend:
-  name: git-gateway
-  branch: main
-  repo: Gautown/GauTownStudio
+  name: 'local'
+  label: '本地开发'
 
 # 本地化配置
-local_backend: true
 locale: 'zh_Hans'
 logo_url: '/images/logo.png'
-display_url: 'https://gautown.netlify.app'
+display_url: 'http://localhost:4321'
 show_preview_links: true
 
 # 全局媒体文件夹设置
@@ -19,8 +20,7 @@ media_library:
   name: 'static'
 
 # 本地开发配置
-development:
-  local_backend: true
+local_backend: true
 
 collections:
   - name: "portfolio"

@@ -81,6 +81,7 @@ body {
 .site-header {
   background-color: #fcfcfc;
   border-bottom: 1px solid #ddd;
+  backdrop-filter: blur(5px) saturate(200%);
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
   top: 0;
   z-index: 199;
@@ -197,7 +198,6 @@ body {
 }
 
 .nav-link {
-  text-decoration: none;
   width: 4rem;
   color: #333;
   background: linear-gradient(to right, #666, #666) no-repeat right bottom;
@@ -873,6 +873,207 @@ th, td {
   color: #ddd;
 }
 
+/* 正文图片样式 - 取消高度限制 */
+.portfolio-image,
+.tool-image,
+.warehouse-image {
+  width: 100%;
+  height: auto; /* 取消固定高度，改为自动高度 */
+  object-fit: contain; /* 保持图片比例 */
+  background-color: #f5f5f5;
+  margin-bottom: 2rem;
+  max-height: none; /* 移除最大高度限制 */
+}
+
+/* 作品集详情页面样式 */
+.portfolio-detail h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.portfolio-meta {
+  color: #666;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.portfolio-content {
+  line-height: 1.8;
+}
+
+/* 工具详情页面样式 */
+.tool-detail h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.tool-meta {
+  color: #666;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tool-content {
+  line-height: 1.8;
+}
+
+/* 仓库详情页面样式 */
+.warehouse-detail h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.warehouse-meta {
+  color: #666;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.warehouse-content {
+  line-height: 1.8;
+}
+
+/* 笔记详情页面样式 */
+.note-detail h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.note-content {
+  line-height: 1.8;
+}
+
+/* 错误页面样式 */
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 2rem 1rem;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.error-title {
+  font-size: 6rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0;
+  line-height: 1;
+}
+
+.error-subtitle {
+  font-size: 2rem;
+  color: #333;
+  margin: 1rem 0 0.5rem;
+}
+
+.error-message {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 1rem 0 2rem;
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.error-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid #ddd;
+  color: #333;
+  background: white;
+}
+
+.error-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-button.primary {
+  background: #333;
+  color: white;
+  border-color: #333;
+}
+
+.error-button.primary:hover {
+  background: #222;
+  border-color: #222;
+}
+
+.error-navigation {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.error-navigation h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.error-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.error-nav-list li {
+  margin: 0;
+}
+
+.error-nav-list a {
+  color: #333;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.error-nav-list a:hover {
+  background: #f5f5f5;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .error-title {
+    font-size: 4rem;
+  }
+
+  .error-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .error-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .error-button {
+    width: 100%;
+  }
+}
+
 /* 响应式断点 - 桌面端大屏 ( > 1441px ) */
 @media (min-width: 1441px) {
   .grid-5 {
@@ -1110,10 +1311,5 @@ th, td {
   .search-input {
     width: 100%;
     max-width: 300px; /* 限制最大宽度 */
-  }
-  
-  .search-input:focus {
-    width: 100%;
-    max-width: 300px;
   }
 }
