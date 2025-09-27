@@ -1,7 +1,7 @@
 ---
 title: Twinmotion
 description: 是一款由 Epic Games 开发的领先的实时可视化工具，主要用于建筑、工程、城市规划和景观园林等领域
-thumbnail: /images/tools/tw.svg
+thumbnail: public/images/tw.jpg
 date: 2025-09-27T22:13:00.000+08:00
 ---
 ## Twinmotion
