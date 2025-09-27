@@ -1,7 +1,7 @@
 ---
 title: SketchUp
 description: SketchUp 又叫草图大师，是一款由美国天宝公司（Trimble）开发的三维建模与设计软件
-thumbnail: /images/tools/logo2.svg
+thumbnail: /images/sketchup.svg
 date: 2025-09-28T01:03:00.000+08:00
 ---
 SketchUp 又叫草图大师，是一款由美国天宝公司（Trimble）开发的三维建模与设计软件。
