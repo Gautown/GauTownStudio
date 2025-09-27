@@ -27,6 +27,6 @@ date: 2025-09-27T22:13:00.000+08:00
 * **电影与电视：**可以创建高质量的场景和动画，为电影和电视制作提供可视化支持。
 * **时尚领域：**如 Fashion Innovation Agency 与时尚设计师合作，展示了 Twinmotion 在时尚领域可视化技术发展中的潜力。
 ### 下载链接：
-[**下载启动程序**](https://www.twinmotion.com/zh-CN/download)
+[**下载启动程序**https://www.twinmotion.com/zh-CN/download](https://www.twinmotion.com/zh-CN/download)
 
-[**下载插件**](https://www.twinmotion.com/zh-CN/plugins)
+[**下载插件**https://www.twinmotion.com/zh-CN/plugins](https://www.twinmotion.com/zh-CN/plugins)
