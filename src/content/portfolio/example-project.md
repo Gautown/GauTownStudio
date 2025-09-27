@@ -1,7 +1,7 @@
 ---
 title: 示例项目
 description: 这是一个示例项目描述
-thumbnail: /images/portfolio/example.jpg
+thumbnail: /images/example.jpg
 date: 2025-09-23T00:00:00Z
 ---
 

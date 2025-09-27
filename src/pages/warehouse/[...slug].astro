@@ -58,7 +58,12 @@ const popularTags = [
     </div>
     
     {warehouse.data.thumbnail && (
-      <img src={warehouse.data.thumbnail} alt={warehouse.data.title} class="warehouse-image" />
+      <img 
+        src={warehouse.data.thumbnail} 
+        alt={warehouse.data.title} 
+        class="warehouse-image"
+        onerror="this.onerror=null;this.src='/images/noimg.gif';"
+      />
     )}
     
     <div class="warehouse-content">

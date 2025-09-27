@@ -8,6 +8,7 @@
   src: url("/fonts/fonts/bootstrap-icons.woff2") format("woff2"),
        url("/fonts/fonts/bootstrap-icons.woff") format("woff");
 }
+/***best beautiful blue***/
 
 .bi::before,
 [class^="bi-"]::before,
