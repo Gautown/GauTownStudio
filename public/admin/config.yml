@@ -22,7 +22,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/images", public_folder: "/images" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
@@ -33,7 +33,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/images", public_folder: "/images" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
@@ -44,7 +44,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/images", public_folder: "/images" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
@@ -63,7 +63,7 @@ collections:
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image", media_library: { config: { multiple: false } }, media_folder: "public/images", public_folder: "/images" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
