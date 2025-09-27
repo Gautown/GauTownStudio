@@ -9,7 +9,7 @@
        url("/fonts/fonts/bootstrap-icons.woff") format("woff");
 }
 /***best beautiful blue***/
-
+a{text-decoration: none;}
 .bi::before,
 [class^="bi-"]::before,
 [class*=" bi-"]::before {
