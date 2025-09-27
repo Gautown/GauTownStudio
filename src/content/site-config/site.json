@@ -1,6 +1,6 @@
 {
   "copyright": "© 2025 GauTown Studio. 保留所有权利。",
-  "keywords": "一个三维设计学习、交流、分享站",
+  "keywords": "免费学习充电、畅快交流互动、优质模型、材质、插件随心下载的专业站点",
   "logo": "/images/logo.svg",
   "siteName": "GauTown Studio",
   "navigation": [
@@ -29,8 +29,8 @@
       "url": "/about"
     }
   ],
-  "subtitle": "一个三维设计学习、交流、分享站",
-  "title": "斑斓•设绘",
+  "subtitle": "免费学习、交流，模型、插件下载站",
+  "title": "樘高造室集",
   "friendLinks": [
     {
       "name": "Github",
@@ -43,5 +43,5 @@
       "description": "请联系我"
     }
   ],
-  "description": "一个三维设计学习、交流、分享站"
+  "description": "免费学习充电、畅快交流互动、优质模型、材质、插件随心下载的专业站点"
 }
