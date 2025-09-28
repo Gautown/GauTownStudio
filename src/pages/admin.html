@@ -31,12 +31,6 @@
   <body>
     <!-- 只在生产环境加载Netlify Identity -->
     <script>
-      // 检查是否在本地开发模式下运行
-      const isLocal = window.location.hostname === 'localhost' || 
-                     window.location.hostname === '127.0.0.1' ||
-                     window.location.hostname === '0.0.0.0' ||
-                     new URLSearchParams(window.location.search).get('local') === 'true';
-      
       // 只在生产环境加载Netlify Identity
       if (!isLocal) {
         document.write('<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"><\/script>');
@@ -48,7 +42,9 @@
       // 注册静态媒体库以解决"Missing external media library 'static'"错误
       CMS.registerMediaLibrary({
         name: 'static',
-        init: () => Promise.resolve()
+        init: () => Promise.resolve(),
+        show: () => Promise.resolve(),
+        hide: () => Promise.resolve()
       });
       
       // 注册本地后端
