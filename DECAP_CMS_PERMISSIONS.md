@@ -197,7 +197,7 @@ collections:
     create: true
     fields:
       - { label: "标题", name: "title", widget: "string" }
-      - { label: "标签", name: "tags", widget: "list", required: false }
+      - { label: "标签", name: "tags", widget: "list", required: false, field: { label: "标签名称", name: "tag", widget: "string" } }
       # 其他字段...
 ```
 
@@ -211,6 +211,19 @@ const portfolio = defineCollection({
     // 其他字段...
   }),
 });
+```
+
+### 标签字段使用问题
+
+如果标签字段无法正常工作或显示异常，请检查：
+
+1. 确保标签字段在配置文件中使用了正确的widget类型（list）
+2. 确保为list类型的标签字段配置了子字段定义
+3. 确保内容集合的schema定义中tags字段类型为z.array(z.string()).optional()
+
+正确的标签字段配置示例：
+```yaml
+- { label: "标签", name: "tags", widget: "list", required: false, field: { label: "标签名称", name: "tag", widget: "string" } }
 ```
 
 ### 权限不足错误

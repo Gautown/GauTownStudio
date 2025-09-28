@@ -222,6 +222,12 @@ function checkConfigFile() {
       // 检查tags字段配置
       if (configContent.includes('tags')) {
         console.log('✓ 配置中包含tags字段');
+        // 检查tags字段是否正确配置
+        if (configContent.includes('widget: "list"') && configContent.includes('field:')) {
+          console.log('✓ tags字段配置正确');
+        } else {
+          console.log('⚠ tags字段可能需要优化配置');
+        }
       } else {
         console.log('⚠ 配置中未找到tags字段');
       }
