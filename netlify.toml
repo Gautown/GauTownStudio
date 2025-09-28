@@ -15,7 +15,7 @@
 
 # 重定向旧的Netlify域名到自定义域名
 [[redirects]]
-  from = "https://gautownstudio.netlify.app/*"
+  from = "https://gautown.netlify.app/*"
   to = "https://gautown.top/:splat"
   status = 301
   force = true
