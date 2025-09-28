@@ -80,6 +80,10 @@
       // 只在生产环境初始化Netlify Identity
       if (window.netlifyIdentity && !isLocal) {
         console.log('Initializing Netlify Identity...');
+        
+        // 初始化Netlify Identity Widget
+        window.netlifyIdentity.init();
+        
         window.netlifyIdentity.on("init", user => {
           console.log('Netlify Identity init event:', user);
           if (!user) {
@@ -94,11 +98,6 @@
           window.netlifyIdentity.on('login', () => {
             window.location.href = '/admin/';
           });
-        }
-        
-        // 初始化Netlify Identity Widget
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.init();
         }
       } else {
         console.log('Netlify Identity not available (local mode)');
