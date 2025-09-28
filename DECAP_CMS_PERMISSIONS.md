@@ -13,6 +13,7 @@
 5. 环境变量配置缺失
 6. 用户权限不足
 7. 媒体库配置不正确
+8. Content Security Policy (CSP) 配置阻止了必要资源加载
 
 ## 解决方案
 
@@ -67,6 +68,17 @@ backend:
 3. 找到您的用户账户
 4. 确保用户状态为"Confirmed"
 5. 检查用户角色（如果已设置）
+
+### 7. 检查Content Security Policy配置
+
+确保netlify.toml中的Content Security Policy允许连接到必要的服务：
+
+```toml
+[[headers]]
+  for = "/admin/index.html"
+  [headers.values]
+    Content-Security-Policy = "frame-ancestors 'self' https://*.netlify.com https://*.netlify.app; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com https://*.netlify.app; object-src 'none'; connect-src 'self' https://*.netlify.com https://*.netlify.app https://api.github.com; font-src 'self' https://*.netlify.com https://*.netlify.app; img-src 'self' data: https://*.netlify.com https://*.netlify.app https://*.githubusercontent.com;"
+```
 
 ## 调试步骤
 
@@ -127,6 +139,7 @@ CMS.registerMediaLibrary({
 2. Netlify Identity服务是否已启用
 3. Git Gateway是否已启用
 4. 用户角色和权限设置是否正确
+5. Content Security Policy是否阻止了必要资源加载
 
 ## 高级故障排除
 
@@ -149,6 +162,12 @@ CMS.registerMediaLibrary({
 2. 点击"Services"部分的"Git Gateway"
 3. 点击"Re-authorize GitHub"按钮
 4. 按照提示完成GitHub授权
+
+### 4. 检查GitHub仓库权限
+
+1. 确保Netlify有权限访问您的GitHub仓库
+2. 检查仓库名称是否正确（区分大小写）
+3. 确保仓库是公共的或Netlify有访问私有仓库的权限
 
 ## 安全建议
 

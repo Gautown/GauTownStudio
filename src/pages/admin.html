@@ -128,7 +128,9 @@
         console.log('Initializing Netlify Identity...');
         
         // 初始化Netlify Identity Widget
-        window.netlifyIdentity.init();
+        window.netlifyIdentity.init({
+          APIUrl: "https://gautown.netlify.app/.netlify/identity"
+        });
         
         window.netlifyIdentity.on("init", user => {
           console.log('Netlify Identity init event:', user);
@@ -140,6 +142,13 @@
             // 检查用户权限
             if (user.app_metadata && user.app_metadata.roles) {
               console.log('User roles:', user.app_metadata.roles);
+            }
+            
+            // 检查用户确认状态
+            if (user.confirmed_at) {
+              console.log('User email confirmed at:', user.confirmed_at);
+            } else {
+              console.warn('User email not confirmed - this may cause permission issues');
             }
           }
         });
@@ -154,6 +163,26 @@
         // 添加权限检查
         window.netlifyIdentity.on('login', (user) => {
           console.log('User logged in:', user);
+          
+          // 检查用户权限
+          if (user && user.email) {
+            // 检查用户是否已确认邮箱
+            if (!user.confirmed_at) {
+              console.warn('User email not confirmed. Please check your email and confirm your account.');
+            }
+            
+            // 检查用户角色
+            if (user.app_metadata && user.app_metadata.roles) {
+              console.log('User roles:', user.app_metadata.roles);
+            } else {
+              console.warn('User has no roles assigned. This may cause permission issues.');
+            }
+          }
+        });
+        
+        // 添加错误处理
+        window.netlifyIdentity.on('error', (err) => {
+          console.error('Netlify Identity error:', err);
         });
       } else {
         console.log('Netlify Identity not available (local mode)');
@@ -180,6 +209,63 @@
       } else {
         console.log('Decap CMS running in production mode');
         console.log('Using production configuration: /admin/config.yml');
+        
+        // 添加生产环境的额外检查
+        setTimeout(() => {
+          if (!window.netlifyIdentity) {
+            console.error('Netlify Identity Widget failed to load. Check CSP settings in netlify.toml');
+          }
+        }, 3000);
+      }
+      
+      // 添加权限检查函数
+      function checkDecapPermissions() {
+        console.log('=== Decap CMS Permissions Check ===');
+        
+        // 检查是否在本地模式
+        if (isLocal) {
+          console.log('✓ Running in local mode - permissions check skipped');
+          return;
+        }
+        
+        // 检查Netlify Identity
+        if (!window.netlifyIdentity) {
+          console.error('✗ Netlify Identity Widget not loaded');
+          return;
+        }
+        
+        // 检查用户状态
+        const user = window.netlifyIdentity.currentUser();
+        if (!user) {
+          console.warn('ℹ No user logged in');
+          return;
+        }
+        
+        console.log('✓ User logged in:', user.email);
+        
+        // 检查用户确认状态
+        if (!user.confirmed_at) {
+          console.error('✗ User email not confirmed. Please check your email and confirm your account.');
+          return;
+        }
+        
+        console.log('✓ User email confirmed');
+        
+        // 检查角色
+        if (user.app_metadata && user.app_metadata.roles) {
+          console.log('✓ User roles:', user.app_metadata.roles);
+        } else {
+          console.warn('⚠ User has no roles assigned');
+        }
+        
+        console.log('=== End Permissions Check ===');
+      }
+      
+      // 在页面加载完成后运行权限检查
+      if (!isLocal) {
+        window.addEventListener('load', () => {
+          setTimeout(checkDecapPermissions, 2000);
+        });
       }
     </script>
   </body>
