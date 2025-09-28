@@ -42,7 +42,7 @@ const latestArticles = latestNotes.map(note => ({
 // 收集所有内容的标签
 const allPortfolios = await getCollection('portfolio');
 const allTools = await getCollection('tools');
-const allNotes = await getCollection('notes');
+// 修复：移除重复声明的allNotes变量
 const allWarehouses = await getCollection('warehouse');
 
 // 提取所有标签并统计频率
@@ -116,7 +116,7 @@ const popularTags = Array.from(tagCounts.entries())
         <h3>标签：</h3>
         <div class="tag-list">
           {warehouse.data.tags.map(tag => (
-            <span class="tag" key={tag}>{tag}</span>
+            <span class="tag">{tag}</span>
           ))}
         </div>
       </div>

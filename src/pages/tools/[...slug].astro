@@ -42,7 +42,8 @@ const latestArticles = latestNotes.map(note => ({
 // 收集所有内容的标签
 const allPortfolios = await getCollection('portfolio');
 const allTools = await getCollection('tools');
-const allNotes = await getCollection('notes');
+// 修复：重命名变量以避免重复声明
+const allNotesForTags = await getCollection('notes');
 const allWarehouses = await getCollection('warehouse');
 
 // 提取所有标签并统计频率
@@ -67,7 +68,7 @@ allTools.forEach(item => {
 });
 
 // 处理笔记标签
-allNotes.forEach(item => {
+allNotesForTags.forEach(item => {
   if (item.data.tags && Array.isArray(item.data.tags)) {
     item.data.tags.forEach(tag => {
       tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
@@ -116,7 +117,7 @@ const popularTags = Array.from(tagCounts.entries())
         <h3>标签：</h3>
         <div class="tag-list">
           {tool.data.tags.map(tag => (
-            <span class="tag" key={tag}>{tag}</span>
+            <span class="tag">{tag}</span>
           ))}
         </div>
       </div>
