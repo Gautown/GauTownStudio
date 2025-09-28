@@ -44,7 +44,7 @@ function checkMediaLibrary() {
             showResult.then(result => {
               console.log('Show Promise解析结果:', result);
               if (result) {
-                const resultMethods = ['show', 'hide'];
+                const resultMethods = ['show', 'hide', 'onShow', 'onHide'];
                 resultMethods.forEach(method => {
                   if (typeof result[method] === 'function') {
                     console.log(`✓ 返回对象包含方法 ${method}`);
@@ -52,10 +52,14 @@ function checkMediaLibrary() {
                     console.log(`✗ 返回对象缺少方法 ${method}`);
                   }
                 });
+              } else {
+                console.log('✗ Show方法返回了空结果');
               }
             }).catch(error => {
               console.log('Show方法执行错误:', error);
             });
+          } else {
+            console.log('✗ Show方法未返回Promise');
           }
         } catch (error) {
           console.log('测试show方法时出错:', error.message);
@@ -159,6 +163,14 @@ function checkConfigFile() {
       } else if (configContent.includes('media_library:')) {
         console.log('⚠ 媒体库配置可能存在格式问题');
       }
+      
+      // 检查repo配置
+      const repoMatch = configContent.match(/repo:\s*['"]?([^'"\n]+)/);
+      if (repoMatch && repoMatch[1]) {
+        console.log('✓ 仓库配置:', repoMatch[1]);
+      } else {
+        console.log('⚠ 未找到仓库配置');
+      }
     })
     .catch(error => {
       console.log('✗ 获取配置文件时出错:', error.message);
@@ -186,6 +198,28 @@ function checkNetwork() {
   });
 }
 
+// 检查Git Gateway连接
+function checkGitGateway() {
+  console.log('=== Git Gateway诊断 ===');
+  
+  if (typeof window.CMS === 'undefined') {
+    console.log('✗ CMS对象未定义，无法检查Git Gateway');
+    return;
+  }
+  
+  try {
+    // 检查后端配置
+    const backend = window.CMS.getBackend();
+    if (backend) {
+      console.log('✓ 后端已配置:', backend.name);
+    } else {
+      console.log('ℹ 未配置后端');
+    }
+  } catch (error) {
+    console.log('✗ 检查后端时出错:', error.message);
+  }
+}
+
 // 运行所有检查
 function runAllChecks() {
   console.log('=== Decap CMS高级诊断工具 ===');
@@ -200,6 +234,8 @@ function runAllChecks() {
     checkConfigFile();
     console.log('');
     checkNetwork();
+    console.log('');
+    checkGitGateway();
     console.log('');
     console.log('=== 诊断完成 ===');
   }, 1000);

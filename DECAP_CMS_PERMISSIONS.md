@@ -145,6 +145,13 @@ CMS.registerMediaLibrary({
 
 这是由于媒体库缺少必要的方法。确保在admin.html中注册的媒体库包含了show和hide方法，并且show方法返回正确的对象结构。
 
+解决步骤：
+1. 检查浏览器控制台错误信息
+2. 运行advanced_debug.js脚本检查媒体库注册状态
+3. 确保media_library在config.yml中正确配置
+4. 确保在admin.html中正确注册了媒体库
+5. 检查媒体库的show方法是否返回了正确的对象
+
 ### 权限不足错误
 
 如果遇到权限错误，请检查：
