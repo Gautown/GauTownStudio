@@ -7,12 +7,12 @@ date: 2025-09-23T00:00:00Z
 
 ## 仓库介绍
 
-这是一个使用 TinaCMS 创建的仓库项目示例。
+这是一个使用 Decap CMS 创建的仓库项目示例。
 
 ## 技术栈
 
 - Astro
-- TinaCMS
+- Decap CMS
 - TailwindCSS
 
 ## 仓库特点

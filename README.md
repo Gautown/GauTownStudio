@@ -51,14 +51,12 @@
 
 项目包含以下自定义样式文件：
 
-- `src/styles/tinacms-sidebar.css` - 固定TinaCMS侧边栏的样式
+- `src/styles/sidebar.css` - 固定侧边栏的样式
 
 ## 部署
 
-本项目配置为在 Netlify 上部署。请确保在 Netlify 项目设置中配置以下环境变量:
-
-- `NEXT_PUBLIC_TINA_CLIENT_ID`
-- `TINA_TOKEN`
+本项目配置为在 Netlify 上部署。使用 Decap CMS 需要配置 Netlify Identity 和 Git Gateway，
+详细信息请参考 [Decap CMS 官方文档](https://decapcms.org/docs/authentication-backends/)。
 
 构建项目请使用 `npm run build` 命令。
 

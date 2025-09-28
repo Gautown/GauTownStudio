@@ -2,8 +2,8 @@
 title: 你好，世界
 ---
 
-欢迎来到我的 TinaCMS 网站！
+欢迎来到我的 Decap CMS 网站！
 
-这是一个使用 TinaCMS 和 Astro 构建的简单网站示例。
+这是一个使用 Decap CMS 和 Astro 构建的简单网站示例。
 
 您可以在这个网站上创建和管理笔记以及作品集项目。
