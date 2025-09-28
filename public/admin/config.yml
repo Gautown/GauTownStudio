@@ -1,7 +1,7 @@
 backend:
   name: git-gateway
   branch: main
-  repo: Gautown/GauTownStudio
+  repo: Gautown/GauTown
 
 # 本地化配置
 local_backend: true
