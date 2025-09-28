@@ -95,6 +95,11 @@
             window.location.href = '/admin/';
           });
         }
+        
+        // 初始化Netlify Identity Widget
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.init();
+        }
       } else {
         console.log('Netlify Identity not available (local mode)');
       }

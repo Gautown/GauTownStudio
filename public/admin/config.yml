@@ -1,6 +1,10 @@
 backend:
   name: git-gateway
   branch: main
+  # 启用GitHub登录
+  auth_type: github
+  # 可选：指定GitHub应用的客户端ID（如果使用自定义OAuth应用）
+  # auth_client_id: your-github-oauth-client-id
 
 # 本地化配置
 local_backend: true
@@ -12,9 +16,16 @@ show_preview_links: true
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
+# 媒体库配置
+media_library:
+  name: 'static'
+
 # 本地开发配置
 development:
   local_backend: true
+
+# OAuth配置 - GitHub登录
+publish_mode: editorial_workflow
 
 collections:
   - name: "portfolio"
