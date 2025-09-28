@@ -5,6 +5,7 @@ description: Blender 是一款免费开源的全能型 3D
 thumbnail: /images/blender.webp
 tags:
   - 三维设计
+  - Blender
 date: 2025-09-23T00:00:00.000Z
 ---
 ### 工具介绍
