@@ -38,13 +38,57 @@ const latestArticles = latestNotes.map(note => ({
   date: note.data.date ? new Date(note.data.date).toLocaleDateString('zh-CN') : '未知日期'
 }));
 
-// 获取热门标签（示例数据）
-const popularTags = [
-  { name: "前端", count: 15, url: "/tags/frontend" },
-  { name: "设计", count: 12, url: "/tags/design" },
-  { name: "React", count: 10, url: "/tags/react" },
-  { name: "Node.js", count: 8, url: "/tags/nodejs" },
-];
+// 获取热门标签（从实际内容中提取）
+// 收集所有内容的标签
+const allPortfolios = await getCollection('portfolio');
+const allTools = await getCollection('tools');
+const allNotes = await getCollection('notes');
+const allWarehouses = await getCollection('warehouse');
+
+// 提取所有标签并统计频率
+const tagCounts = new Map();
+
+// 处理作品集标签
+allPortfolios.forEach(item => {
+  if (item.data.tags && Array.isArray(item.data.tags)) {
+    item.data.tags.forEach(tag => {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    });
+  }
+});
+
+// 处理工具标签
+allTools.forEach(item => {
+  if (item.data.tags && Array.isArray(item.data.tags)) {
+    item.data.tags.forEach(tag => {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    });
+  }
+});
+
+// 处理笔记标签
+allNotes.forEach(item => {
+  if (item.data.tags && Array.isArray(item.data.tags)) {
+    item.data.tags.forEach(tag => {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    });
+  }
+});
+
+// 处理仓库标签
+allWarehouses.forEach(item => {
+  if (item.data.tags && Array.isArray(item.data.tags)) {
+    item.data.tags.forEach(tag => {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    });
+  }
+});
+
+// 转换为数组并按频率排序，取前10个
+const popularTags = Array.from(tagCounts.entries())
+  .map(([name, count]) => ({ name, count, url: `/tags/${encodeURIComponent(name)}` }))
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 10);
 ---
 
 <ContentLayout 
@@ -59,23 +103,35 @@ const popularTags = [
   latestArticles={latestArticles}
   popularTags={popularTags}
 >
-  <article class="warehouse-detail">
+  <article class="portfolio-detail">
     <h1>{warehouse.data.title}</h1>
     
-    <div class="warehouse-meta">
+    <div class="portfolio-meta">
       <p>{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : ''}</p>
     </div>
+    
+    {/* 显示标签 */}
+    {warehouse.data.tags && warehouse.data.tags.length > 0 && (
+      <div class="portfolio-tags">
+        <h3>标签：</h3>
+        <div class="tag-list">
+          {warehouse.data.tags.map(tag => (
+            <span class="tag" key={tag}>{tag}</span>
+          ))}
+        </div>
+      </div>
+    )}
     
     {warehouse.data.thumbnail && (
       <img 
         src={warehouse.data.thumbnail} 
         alt={warehouse.data.title} 
-        class="warehouse-image"
+        class="portfolio-image"
         onerror="this.onerror=null;this.src='/images/noimg.gif';"
       />
     )}
     
-    <div class="warehouse-content">
+    <div class="portfolio-content">
       <Content />
     </div>
   </article>

@@ -94,25 +94,6 @@ backend:
 7. 点击"Generate webhook signature"按钮
 8. 保存设置
 
-### ACCESS TOKEN ERROR错误
-
-如果遇到"ACCESS TOKEN ERROR: Failed getting access token: Gotrue-js: failed getting jwt access token"错误：
-
-1. **重新生成Git Gateway令牌**（同上）
-2. **检查用户认证状态**：
-   - 确保您已通过Netlify Identity登录
-   - 检查您的邮箱是否已确认
-3. **清除浏览器缓存和Cookie**：
-   - 打开浏览器开发者工具
-   - 右键点击刷新按钮
-   - 选择"清空缓存并硬性重新加载"
-4. **重新登录**：
-   - 退出当前Netlify Identity会话
-   - 重新登录到Decap CMS
-5. **检查站点设置**：
-   - 确保Netlify Identity服务已正确启用
-   - 确保Git Gateway服务已正确配置
-
 ## 调试步骤
 
 ### 1. 使用调试脚本
@@ -197,17 +178,23 @@ collections:
     create: true
     fields:
       - { label: "标题", name: "title", widget: "string" }
-      - { label: "标签", name: "tags", widget: "list", required: false, field: { label: "标签名称", name: "tag", widget: "string" } }
+      - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：技术,教程,前端" }
       # 其他字段...
 ```
 
 在src/content/config.ts中：
 ```typescript
+// 标签解析函数：将逗号分隔的字符串转换为标签数组
+function parseTags(tagsString: string | undefined): string[] {
+  if (!tagsString) return [];
+  return tagsString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+}
+
 const portfolio = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    tags: z.array(z.string()).optional(), // 添加tags字段定义
+    tags: z.string().optional().transform(parseTags), // 使用转换函数处理标签
     // 其他字段...
   }),
 });
@@ -244,6 +231,63 @@ const portfolio = defineCollection({
 });
 ```
 
+### 标签显示问题
+
+如果文章详情页面没有显示标签，请检查：
+
+1. 确保在内容详情页面模板中添加了标签显示代码
+2. 确保全局CSS中包含了标签样式
+3. 确保内容数据中包含tags字段且不为空
+
+在内容详情页面中显示标签的示例代码：
+```astro
+<!-- 显示标签 -->
+{content.data.tags && content.data.tags.length > 0 && (
+  <div class="portfolio-tags">
+    <h3>标签：</h3>
+    <div class="tag-list">
+      {content.data.tags.map(tag => (
+        <span class="tag" key={tag}>{tag}</span>
+      ))}
+    </div>
+  </div>
+)}
+```
+
+### 热门标签显示问题
+
+如果侧边栏的热门标签没有显示实际内容中的标签，请检查：
+
+1. 确保在页面数据获取部分正确收集了所有内容的标签
+2. 确保正确统计了标签频率并排序
+3. 确保将热门标签数据传递给Sidebar组件
+
+收集和处理标签的示例代码：
+```javascript
+// 收集所有内容的标签
+const allPortfolios = await getCollection('portfolio');
+const allTools = await getCollection('tools');
+// ... 其他集合
+
+// 提取所有标签并统计频率
+const tagCounts = new Map();
+
+// 处理作品集标签
+allPortfolios.forEach(item => {
+  if (item.data.tags && Array.isArray(item.data.tags)) {
+    item.data.tags.forEach(tag => {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    });
+  }
+});
+
+// 转换为数组并按频率排序
+const popularTags = Array.from(tagCounts.entries())
+  .map(([name, count]) => ({ name, count, url: `/tags/${encodeURIComponent(name)}` }))
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 10);
+```
+
 ### 权限不足错误
 
 如果遇到权限错误，请检查：
@@ -259,14 +303,10 @@ const portfolio = defineCollection({
 
 如果遇到"Git Gateway Error: Please ask your site administrator to reissue the Git Gateway token"错误：
 
-1. 登录到Netlify控制台
-2. 选择您的站点
-3. 点击左侧菜单中的"Identity"
-4. 向下滚动到"Services"部分
-5. 找到"Git Gateway"
-6. 点击"Edit settings"
-7. 点击"Generate webhook signature"按钮
-8. 保存设置
+1. 登录Netlify控制台
+2. 重新生成Git Gateway webhook签名
+3. 确保GitHub集成正常工作
+4. 检查仓库访问权限
 
 ## 高级故障排除
 
