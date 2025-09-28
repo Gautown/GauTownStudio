@@ -159,6 +159,41 @@ CMS.registerMediaLibrary({
 5. 检查媒体库的show方法是否返回了正确的对象
 6. 确保所有媒体库方法都返回Promise
 
+### 内容字段配置问题
+
+如果发现某些字段在Decap CMS中不可见或无法编辑，请检查以下几点：
+
+1. 确保在config.yml和config.local.yml中正确配置了所有字段
+2. 确保在src/content/config.ts中对应的集合schema定义包含了这些字段
+3. 确保字段名称在配置文件和schema定义中保持一致
+
+例如，为内容添加标签(tags)字段：
+
+在config.yml中：
+```yaml
+collections:
+  - name: "portfolio"
+    label: "作品"
+    folder: "src/content/portfolio"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "标签", name: "tags", widget: "list", required: false }
+      # 其他字段...
+```
+
+在src/content/config.ts中：
+```typescript
+const portfolio = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    tags: z.array(z.string()).optional(), // 添加tags字段定义
+    // 其他字段...
+  }),
+});
+```
+
 ### 权限不足错误
 
 如果遇到权限错误，请检查：

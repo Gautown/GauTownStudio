@@ -218,6 +218,23 @@ function checkConfigFile() {
       } else {
         console.log('⚠ 未找到仓库配置');
       }
+      
+      // 检查tags字段配置
+      if (configContent.includes('tags')) {
+        console.log('✓ 配置中包含tags字段');
+      } else {
+        console.log('⚠ 配置中未找到tags字段');
+      }
+      
+      // 检查常见的内容集合
+      const collections = ['portfolio', 'tools', 'warehouse', 'notes', 'about'];
+      collections.forEach(collection => {
+        if (configContent.includes(collection)) {
+          console.log(`✓ 包含${collection}集合`);
+        } else {
+          console.log(`⚠ 未找到${collection}集合`);
+        }
+      });
     })
     .catch(error => {
       console.log('✗ 获取配置文件时出错:', error.message);

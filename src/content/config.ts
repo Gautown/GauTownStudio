@@ -4,6 +4,7 @@ const notes = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    tags: z.array(z.string()).optional(),
     description: z.string().optional(),
     thumbnail: z.string().optional(),
     date: z.date().optional(),
@@ -16,6 +17,7 @@ const portfolio = defineCollection({
     title: z.string(),
     description: z.string(),
     thumbnail: z.string().optional(),
+    tags: z.array(z.string()).optional(),
     date: z.date().optional(),
   }),
 });
@@ -26,6 +28,7 @@ const tools = defineCollection({
     title: z.string(),
     description: z.string(),
     thumbnail: z.string().optional(),
+    tags: z.array(z.string()).optional(),
     date: z.date().optional(),
   }),
 });
@@ -36,6 +39,7 @@ const warehouse = defineCollection({
     title: z.string(),
     description: z.string(),
     thumbnail: z.string().optional(),
+    tags: z.array(z.string()).optional(),
     date: z.date().optional(),
   }),
 });
@@ -46,6 +50,7 @@ const about = defineCollection({
     title: z.string(),
     description: z.string(),
     thumbnail: z.string().optional(),
+    tags: z.array(z.string()).optional(),
     date: z.date().optional(),
   }),
 });
