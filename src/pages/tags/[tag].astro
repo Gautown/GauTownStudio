@@ -1,0 +1,123 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  // 收集所有内容的标签
+  const allPortfolios = await getCollection('portfolio');
+  const allTools = await getCollection('tools');
+  const allNotes = await getCollection('notes');
+  const allWarehouses = await getCollection('warehouse');
+
+  // 提取所有标签
+  const allTags = new Set();
+
+  // 处理作品集标签
+  allPortfolios.forEach(item => {
+    if (item.data.tags && Array.isArray(item.data.tags)) {
+      item.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+
+  // 处理工具标签
+  allTools.forEach(item => {
+    if (item.data.tags && Array.isArray(item.data.tags)) {
+      item.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+
+  // 处理笔记标签
+  allNotes.forEach(item => {
+    if (item.data.tags && Array.isArray(item.data.tags)) {
+      item.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+
+  // 处理仓库标签
+  allWarehouses.forEach(item => {
+    if (item.data.tags && Array.isArray(item.data.tags)) {
+      item.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+
+  // 为每个标签生成路径
+  return Array.from(allTags).map(tag => ({
+    params: { tag },
+  }));
+}
+
+const { tag } = Astro.params;
+
+// 获取具有指定标签的所有内容
+const allPortfolios = await getCollection('portfolio');
+const allTools = await getCollection('tools');
+const allNotes = await getCollection('notes');
+const allWarehouses = await getCollection('warehouse');
+
+// 筛选具有指定标签的内容
+const portfolioItems = allPortfolios.filter(item => 
+  item.data.tags && Array.isArray(item.data.tags) && item.data.tags.includes(tag)
+);
+
+const toolItems = allTools.filter(item => 
+  item.data.tags && Array.isArray(item.data.tags) && item.data.tags.includes(tag)
+);
+
+const noteItems = allNotes.filter(item => 
+  item.data.tags && Array.isArray(item.data.tags) && item.data.tags.includes(tag)
+);
+
+const warehouseItems = allWarehouses.filter(item => 
+  item.data.tags && Array.isArray(item.data.tags) && item.data.tags.includes(tag)
+);
+
+// 合并所有内容并按日期排序
+const allItems = [
+  ...portfolioItems.map(item => ({ ...item, type: '作品' })),
+  ...toolItems.map(item => ({ ...item, type: '工具' }))
+    .filter(item => item.slug !== 'example-tool'), // 过滤示例内容
+  ...noteItems.map(item => ({ ...item, type: '笔记' }))
+    .filter(item => item.slug !== 'hello-world'), // 过滤示例内容
+  ...warehouseItems.map(item => ({ ...item, type: '仓库' }))
+    .filter(item => item.slug !== 'example-warehouse') // 过滤示例内容
+].sort((a, b) => {
+  const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+  const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+  return dateB - dateA;
+});
+---
+
+<MainLayout title={`标签: ${tag}`} description={`包含标签 "${tag}" 的所有内容`}>
+  <div class="main-content">
+    <h1 class="section-title">标签: {tag}</h1>
+    
+    {allItems.length > 0 ? (
+      <div class="grid-5">
+        {allItems.map((item) => (
+          <a href={`/${item.collection}/${item.slug}`} class="content-card" aria-label={`查看${item.type}：${item.data.title}`}>
+            <div class="card-image">
+              {item.data.thumbnail ? (
+                <img 
+                  src={item.data.thumbnail} 
+                  alt={item.data.title}
+                  onerror="this.onerror=null;this.src='/images/noimg.gif';"
+                />
+              ) : (
+                <div class="placeholder-image">暂无图片</div>
+              )}
+            </div>
+            <div class="card-content">
+              <span class="card-tag">{item.type}</span>
+              <h2 class="card-title">{item.data.title}</h2>
+              <p class="card-date">
+                {item.data.date ? new Date(item.data.date).toLocaleDateString('zh-CN') : '未知日期'}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p>没有找到包含此标签的内容。</p>
+    )}
+  </div>
+</MainLayout>

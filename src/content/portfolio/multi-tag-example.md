@@ -2,14 +2,7 @@
 title: 多标签示例项目
 description: 这是一个展示如何使用多个标签的示例项目
 thumbnail: /images/example.jpg
-tags: 
-  - Astro
-  - Decap CMS
-  - TailwindCSS
-  - 前端开发
-  - 静态站点
-  - 博客
-  - 教程
+tags: Astro, Decap CMS, TailwindCSS, 前端开发, 静态站点, 博客, 教程
 date: 2025-09-28T00:00:00Z
 ---
 

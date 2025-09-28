@@ -2,10 +2,7 @@
 title: 带标签的示例项目
 description: 这是一个带有标签的示例项目描述
 thumbnail: /images/example.jpg
-tags: 
-  - Astro
-  - Decap CMS
-  - TailwindCSS
+tags: Astro, Decap CMS, TailwindCSS
 date: 2025-09-28T00:00:00Z
 ---
 
