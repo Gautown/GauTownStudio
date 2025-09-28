@@ -33,6 +33,33 @@ function checkMediaLibrary() {
       
       if (missingMethods.length === 0) {
         console.log('✓ 静态媒体库配置正确');
+        
+        // 测试show方法的返回值
+        try {
+          const showResult = staticMediaLibrary.show({});
+          console.log('Show方法返回值:', showResult);
+          
+          // 检查返回值是否包含必要的方法
+          if (showResult && typeof showResult.then === 'function') {
+            showResult.then(result => {
+              console.log('Show Promise解析结果:', result);
+              if (result) {
+                const resultMethods = ['show', 'hide'];
+                resultMethods.forEach(method => {
+                  if (typeof result[method] === 'function') {
+                    console.log(`✓ 返回对象包含方法 ${method}`);
+                  } else {
+                    console.log(`✗ 返回对象缺少方法 ${method}`);
+                  }
+                });
+              }
+            }).catch(error => {
+              console.log('Show方法执行错误:', error);
+            });
+          }
+        } catch (error) {
+          console.log('测试show方法时出错:', error.message);
+        }
       } else {
         console.log('✗ 静态媒体库缺少方法:', missingMethods);
       }
@@ -82,6 +109,11 @@ function checkUserPermissions() {
       if (user.app_metadata?.roles) {
         console.log('用户角色:', user.app_metadata.roles);
       }
+      
+      // 检查用户权限
+      if (user.app_metadata?.authorization) {
+        console.log('用户授权信息:', user.app_metadata.authorization);
+      }
     } else {
       console.log('ℹ 用户未登录');
     }
@@ -119,6 +151,13 @@ function checkConfigFile() {
         console.log('✓ 包含媒体库配置');
       } else {
         console.log('✗ 缺少媒体库配置');
+      }
+      
+      // 检查媒体库配置格式
+      if (configContent.includes('media_library:') && configContent.includes('name: static')) {
+        console.log('✓ 媒体库配置格式正确');
+      } else if (configContent.includes('media_library:')) {
+        console.log('⚠ 媒体库配置可能存在格式问题');
       }
     })
     .catch(error => {

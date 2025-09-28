@@ -45,7 +45,13 @@
         init: () => Promise.resolve(),
         show: (options = {}) => {
           console.log('Media library show called with options:', options);
-          return Promise.resolve();
+          // 返回一个对象，该对象包含必要的方法
+          return Promise.resolve({
+            show: (opts) => Promise.resolve(),
+            hide: () => Promise.resolve(),
+            onShow: (callback) => {},
+            onHide: (callback) => {}
+          });
         },
         hide: () => {
           console.log('Media library hide called');

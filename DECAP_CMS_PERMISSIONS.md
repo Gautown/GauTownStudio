@@ -12,6 +12,7 @@
 4. 仓库配置不正确
 5. 环境变量配置缺失
 6. 用户权限不足
+7. 媒体库配置不正确
 
 ## 解决方案
 
@@ -98,7 +99,14 @@ backend:
 CMS.registerMediaLibrary({
   name: 'static',
   init: () => Promise.resolve(),
-  show: (options = {}) => Promise.resolve(),
+  show: (options = {}) => {
+    return Promise.resolve({
+      show: (opts) => Promise.resolve(),
+      hide: () => Promise.resolve(),
+      onShow: (callback) => {},
+      onHide: (callback) => {}
+    });
+  },
   hide: () => Promise.resolve()
 });
 ```
@@ -109,7 +117,16 @@ CMS.registerMediaLibrary({
 
 ### "Cannot read properties of undefined (reading 'show')"
 
-这是由于媒体库缺少必要的方法。确保在admin.html中注册的媒体库包含了show和hide方法。
+这是由于媒体库缺少必要的方法。确保在admin.html中注册的媒体库包含了show和hide方法，并且show方法返回正确的对象结构。
+
+### 权限不足错误
+
+如果遇到权限错误，请检查：
+
+1. 用户是否已被邀请并确认了邮箱
+2. Netlify Identity服务是否已启用
+3. Git Gateway是否已启用
+4. 用户角色和权限设置是否正确
 
 ## 高级故障排除
 
