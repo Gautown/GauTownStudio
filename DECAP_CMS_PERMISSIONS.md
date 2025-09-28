@@ -217,13 +217,31 @@ const portfolio = defineCollection({
 
 如果标签字段无法正常工作或显示异常，请检查：
 
-1. 确保标签字段在配置文件中使用了正确的widget类型（list）
-2. 确保为list类型的标签字段配置了子字段定义
-3. 确保内容集合的schema定义中tags字段类型为z.array(z.string()).optional()
+1. 确保标签字段在配置文件中使用了正确的widget类型（string）
+2. 确保内容集合的schema定义中tags字段类型为z.string().optional().transform(parseTags)
+3. 确保已在schema中定义了parseTags转换函数
 
 正确的标签字段配置示例：
 ```yaml
-- { label: "标签", name: "tags", widget: "list", required: false, field: { label: "标签名称", name: "tag", widget: "string" } }
+- { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：技术,教程,前端" }
+```
+
+在src/content/config.ts中：
+```typescript
+// 标签解析函数：将逗号分隔的字符串转换为标签数组
+function parseTags(tagsString: string | undefined): string[] {
+  if (!tagsString) return [];
+  return tagsString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+}
+
+const portfolio = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    tags: z.string().optional().transform(parseTags), // 使用转换函数处理标签
+    // 其他字段...
+  }),
+});
 ```
 
 ### 权限不足错误

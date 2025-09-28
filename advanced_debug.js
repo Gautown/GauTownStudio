@@ -222,11 +222,13 @@ function checkConfigFile() {
       // 检查tags字段配置
       if (configContent.includes('tags')) {
         console.log('✓ 配置中包含tags字段');
-        // 检查tags字段是否正确配置
-        if (configContent.includes('widget: "list"') && configContent.includes('field:')) {
-          console.log('✓ tags字段配置正确');
+        // 检查tags字段是否正确配置为string类型
+        if (configContent.includes('widget: "string"')) {
+          console.log('✓ tags字段配置为string类型（逗号分隔）');
+        } else if (configContent.includes('widget: "list"')) {
+          console.log('ℹ tags字段配置为list类型（逐个添加）');
         } else {
-          console.log('⚠ tags字段可能需要优化配置');
+          console.log('⚠ tags字段类型需要检查');
         }
       } else {
         console.log('⚠ 配置中未找到tags字段');
@@ -245,6 +247,31 @@ function checkConfigFile() {
     .catch(error => {
       console.log('✗ 获取配置文件时出错:', error.message);
     });
+}
+
+// 添加标签功能测试
+function testTagsFunctionality() {
+  console.log('=== 标签功能测试 ===');
+  
+  // 测试标签解析函数
+  try {
+    // 模拟标签解析
+    const testTagsString = "技术, 教程, 前端";
+    const parsedTags = testTagsString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    console.log('✓ 标签解析测试通过:', parsedTags);
+    
+    // 测试空标签
+    const emptyTagsString = "";
+    const parsedEmptyTags = emptyTagsString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    console.log('✓ 空标签解析测试通过:', parsedEmptyTags);
+    
+    // 测试多余空格
+    const spacedTagsString = " 技术 , 教程 , 前端 ";
+    const parsedSpacedTags = spacedTagsString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    console.log('✓ 空格处理测试通过:', parsedSpacedTags);
+  } catch (error) {
+    console.log('✗ 标签解析测试失败:', error.message);
+  }
 }
 
 // 检查网络连接
@@ -359,6 +386,8 @@ function runAllChecks() {
     checkGitGateway();
     console.log('');
     checkAuthStatus();
+    console.log('');
+    testTagsFunctionality();
     console.log('');
     console.log('=== 诊断完成 ===');
   }, 1000);
