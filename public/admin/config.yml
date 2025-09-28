@@ -7,7 +7,7 @@ backend:
 local_backend: true
 locale: 'zh_Hans'
 logo_url: '/images/logo.png'
-display_url: 'https://gautown.netlify.app'
+display_url: 'https://gautown.top'
 show_preview_links: true
 
 # 全局媒体文件夹设置
