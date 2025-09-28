@@ -45,3 +45,4 @@ console.log('3. 点击左侧的"Identity"选项');
 console.log('4. 确保Identity服务已启用');
 console.log('5. 在"External providers"部分启用GitHub');
 console.log('6. 在"Services"部分启用Git Gateway');
+console.log('7. 确保GitHub仓库名称正确设置为: Gautown/GauTownStudio');
