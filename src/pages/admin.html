@@ -39,35 +39,63 @@
     
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
     <script>
-      // 注册静态媒体库以解决"Missing external media library 'static'"错误
-      CMS.registerMediaLibrary({
-        name: 'static',
-        init: () => Promise.resolve(),
-        show: (options = {}) => {
-          console.log('Media library show called with options:', options);
-          // 返回一个对象，该对象包含必要的方法
+      // 创建一个更完整的静态媒体库实现
+      var StaticMediaLibrary = function() {
+        this.name = 'static';
+        this.config = {};
+        
+        this.init = function(config) {
+          console.log('StaticMediaLibrary init called with config:', config);
+          this.config = config || {};
+          return Promise.resolve();
+        };
+        
+        this.show = function(options) {
+          console.log('StaticMediaLibrary show called with options:', options);
+          // 返回一个包含必要方法的对象
           return Promise.resolve({
-            show: (opts) => Promise.resolve(),
-            hide: () => Promise.resolve(),
-            onShow: (callback) => {},
-            onHide: (callback) => {}
+            show: function(opts) {
+              console.log('StaticMediaLibrary instance show called with options:', opts);
+              return Promise.resolve();
+            },
+            hide: function() {
+              console.log('StaticMediaLibrary instance hide called');
+              return Promise.resolve();
+            },
+            onShow: function(callback) {
+              console.log('StaticMediaLibrary instance onShow registered');
+              if (callback) callback();
+            },
+            onHide: function(callback) {
+              console.log('StaticMediaLibrary instance onHide registered');
+              if (callback) callback();
+            }
           });
-        },
-        hide: () => {
-          console.log('Media library hide called');
+        };
+        
+        this.hide = function() {
+          console.log('StaticMediaLibrary hide called');
           return Promise.resolve();
-        },
-        onShow: (callback) => {
-          console.log('Media library onShow registered');
-        },
-        onHide: (callback) => {
-          console.log('Media library onHide registered');
-        },
-        enableStandalone: () => {
-          console.log('Media library enableStandalone called');
+        };
+        
+        this.onShow = function(callback) {
+          console.log('StaticMediaLibrary onShow registered');
+          if (callback) callback();
+        };
+        
+        this.onHide = function(callback) {
+          console.log('StaticMediaLibrary onHide registered');
+          if (callback) callback();
+        };
+        
+        this.enableStandalone = function() {
+          console.log('StaticMediaLibrary enableStandalone called');
           return Promise.resolve();
-        }
-      });
+        };
+      };
+      
+      // 注册静态媒体库以解决"Missing external media library 'static'"错误
+      CMS.registerMediaLibrary(new StaticMediaLibrary());
       
       // 注册本地后端
       CMS.registerBackend('local', {
