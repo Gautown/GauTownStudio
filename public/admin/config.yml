@@ -1,6 +1,8 @@
 backend:
   name: git-gateway
   branch: main
+  # GitHub仓库名称，格式为：用户名/仓库名
+  repo: Gautown/GauTownStudio
   # 启用GitHub登录
   auth_type: github
   # 可选：指定GitHub应用的客户端ID（如果使用自定义OAuth应用）
