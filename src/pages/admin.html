@@ -43,8 +43,24 @@
       CMS.registerMediaLibrary({
         name: 'static',
         init: () => Promise.resolve(),
-        show: () => Promise.resolve(),
-        hide: () => Promise.resolve()
+        show: (options = {}) => {
+          console.log('Media library show called with options:', options);
+          return Promise.resolve();
+        },
+        hide: () => {
+          console.log('Media library hide called');
+          return Promise.resolve();
+        },
+        onShow: (callback) => {
+          console.log('Media library onShow registered');
+        },
+        onHide: (callback) => {
+          console.log('Media library onHide registered');
+        },
+        enableStandalone: () => {
+          console.log('Media library enableStandalone called');
+          return Promise.resolve();
+        }
       });
       
       // 注册本地后端
@@ -84,9 +100,13 @@
           console.log('Netlify Identity init event:', user);
           if (!user) {
             console.log('User not logged in - showing login prompt');
-            // 可以在这里添加自定义的登录提示
           } else {
             console.log('User is logged in:', user.email);
+            
+            // 检查用户权限
+            if (user.app_metadata && user.app_metadata.roles) {
+              console.log('User roles:', user.app_metadata.roles);
+            }
           }
         });
         
@@ -100,11 +120,22 @@
         // 添加权限检查
         window.netlifyIdentity.on('login', (user) => {
           console.log('User logged in:', user);
-          // 可以在这里添加额外的权限检查逻辑
         });
       } else {
         console.log('Netlify Identity not available (local mode)');
       }
+      
+      // 添加错误处理
+      window.addEventListener('error', (event) => {
+        console.error('Global error caught:', event.error);
+        if (event.error && event.error.message) {
+          if (event.error.message.includes('permissions')) {
+            console.log('权限错误 detected:', event.error.message);
+          } else if (event.error.message.includes('media')) {
+            console.log('媒体库错误 detected:', event.error.message);
+          }
+        }
+      });
       
       // 添加本地开发提示
       if (window.location.hostname === 'localhost' || 
@@ -115,14 +146,6 @@
       } else {
         console.log('Decap CMS running in production mode');
         console.log('Using production configuration: /admin/config.yml');
-        
-        // 添加权限不足时的处理
-        window.addEventListener('error', (event) => {
-          if (event.message && event.message.includes('permissions')) {
-            console.log('权限错误 detected:', event.message);
-            // 可以在这里添加用户友好的错误提示
-          }
-        });
       }
     </script>
   </body>

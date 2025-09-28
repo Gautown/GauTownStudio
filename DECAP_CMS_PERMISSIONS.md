@@ -11,6 +11,7 @@
 3. Git Gateway服务未启用
 4. 仓库配置不正确
 5. 环境变量配置缺失
+6. 用户权限不足
 
 ## 解决方案
 
@@ -58,11 +59,19 @@ backend:
 4. 点击"Environment variables"
 5. 确保没有冲突的环境变量
 
+### 6. 检查用户角色和权限
+
+1. 在Netlify控制台的Identity页面中
+2. 点击"Users"选项卡
+3. 找到您的用户账户
+4. 确保用户状态为"Confirmed"
+5. 检查用户角色（如果已设置）
+
 ## 调试步骤
 
 ### 1. 使用调试脚本
 
-在浏览器控制台中运行[debug_permissions.js](file:///d:/Github/Gauportfolio-astro/debug_permissions.js)脚本以获取更多信息。
+在浏览器控制台中运行[advanced_debug.js](file:///d:/Github/Gauportfolio-astro/advanced_debug.js)脚本以获取更多信息。
 
 ### 2. 检查浏览器控制台
 
@@ -89,7 +98,7 @@ backend:
 CMS.registerMediaLibrary({
   name: 'static',
   init: () => Promise.resolve(),
-  show: () => Promise.resolve(),
+  show: (options = {}) => Promise.resolve(),
   hide: () => Promise.resolve()
 });
 ```
@@ -98,9 +107,9 @@ CMS.registerMediaLibrary({
 
 检查config.yml文件格式是否正确，特别是repo字段。
 
-### "Cannot read properties of undefined"
+### "Cannot read properties of undefined (reading 'show')"
 
-确保所有必要的JavaScript对象和方法都已正确初始化。
+这是由于媒体库缺少必要的方法。确保在admin.html中注册的媒体库包含了show和hide方法。
 
 ## 高级故障排除
 
