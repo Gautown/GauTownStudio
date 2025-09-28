@@ -129,8 +129,14 @@ CMS.registerMediaLibrary({
     return Promise.resolve({
       show: (opts) => Promise.resolve(),
       hide: () => Promise.resolve(),
-      onShow: (callback) => {},
-      onHide: (callback) => {}
+      onShow: (callback) => {
+        if (callback) setTimeout(callback, 0);
+        return Promise.resolve();
+      },
+      onHide: (callback) => {
+        if (callback) setTimeout(callback, 0);
+        return Promise.resolve();
+      }
     });
   },
   hide: () => Promise.resolve()
@@ -143,7 +149,7 @@ CMS.registerMediaLibrary({
 
 ### "Cannot read properties of undefined (reading 'show')"
 
-这是由于媒体库缺少必要的方法。确保在admin.html中注册的媒体库包含了show和hide方法，并且show方法返回正确的对象结构。
+这是由于媒体库缺少必要的方法或方法实现不正确。确保在admin.html中注册的媒体库包含了show和hide方法，并且show方法返回正确的对象结构。
 
 解决步骤：
 1. 检查浏览器控制台错误信息
@@ -151,6 +157,7 @@ CMS.registerMediaLibrary({
 3. 确保media_library在config.yml中正确配置
 4. 确保在admin.html中正确注册了媒体库
 5. 检查媒体库的show方法是否返回了正确的对象
+6. 确保所有媒体库方法都返回Promise
 
 ### 权限不足错误
 

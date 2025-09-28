@@ -19,7 +19,7 @@ function checkMediaLibrary() {
     
     if (staticMediaLibrary) {
       // 检查必需的方法
-      const requiredMethods = ['init', 'show', 'hide'];
+      const requiredMethods = ['init', 'show', 'hide', 'onShow', 'onHide'];
       const missingMethods = [];
       
       requiredMethods.forEach(method => {
@@ -33,6 +33,22 @@ function checkMediaLibrary() {
       
       if (missingMethods.length === 0) {
         console.log('✓ 静态媒体库配置正确');
+        
+        // 测试init方法
+        try {
+          const initResult = staticMediaLibrary.init();
+          if (initResult && typeof initResult.then === 'function') {
+            initResult.then(() => {
+              console.log('✓ init方法返回了Promise并已resolve');
+            }).catch(error => {
+              console.log('✗ init方法执行错误:', error);
+            });
+          } else {
+            console.log('✗ init方法未返回Promise');
+          }
+        } catch (error) {
+          console.log('测试init方法时出错:', error.message);
+        }
         
         // 测试show方法的返回值
         try {
@@ -52,6 +68,37 @@ function checkMediaLibrary() {
                     console.log(`✗ 返回对象缺少方法 ${method}`);
                   }
                 });
+                
+                // 测试返回对象的方法
+                try {
+                  const showInnerResult = result.show({});
+                  if (showInnerResult && typeof showInnerResult.then === 'function') {
+                    showInnerResult.then(() => {
+                      console.log('✓ 返回对象的show方法返回了Promise并已resolve');
+                    }).catch(error => {
+                      console.log('✗ 返回对象的show方法执行错误:', error);
+                    });
+                  } else {
+                    console.log('✗ 返回对象的show方法未返回Promise');
+                  }
+                } catch (error) {
+                  console.log('测试返回对象的show方法时出错:', error.message);
+                }
+                
+                try {
+                  const hideInnerResult = result.hide();
+                  if (hideInnerResult && typeof hideInnerResult.then === 'function') {
+                    hideInnerResult.then(() => {
+                      console.log('✓ 返回对象的hide方法返回了Promise并已resolve');
+                    }).catch(error => {
+                      console.log('✗ 返回对象的hide方法执行错误:', error);
+                    });
+                  } else {
+                    console.log('✗ 返回对象的hide方法未返回Promise');
+                  }
+                } catch (error) {
+                  console.log('测试返回对象的hide方法时出错:', error.message);
+                }
               } else {
                 console.log('✗ Show方法返回了空结果');
               }

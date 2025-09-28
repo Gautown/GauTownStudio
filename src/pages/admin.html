@@ -39,7 +39,7 @@
     
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
     <script>
-      // 创建一个符合Decap CMS要求的静态媒体库实现
+      // 创建一个完全符合Decap CMS要求的静态媒体库实现
       var StaticMediaLibrary = function() {
         this.name = 'static';
         this.config = {};
@@ -47,38 +47,42 @@
         this.init = function(config) {
           console.log('StaticMediaLibrary init called with config:', config);
           this.config = config || {};
+          // 返回一个resolved的Promise
           return Promise.resolve();
         };
         
         this.show = function(options) {
           console.log('StaticMediaLibrary show called with options:', options);
           // 返回一个Promise，resolve一个包含必要方法的对象
-          return new Promise(function(resolve) {
-            const mediaLibraryInstance = {
-              show: function(opts) {
-                console.log('StaticMediaLibrary instance show called with options:', opts);
-                return Promise.resolve();
-              },
-              hide: function() {
-                console.log('StaticMediaLibrary instance hide called');
-                return Promise.resolve();
-              },
-              onShow: function(callback) {
-                console.log('StaticMediaLibrary instance onShow registered');
-                if (callback) callback();
-              },
-              onHide: function(callback) {
-                console.log('StaticMediaLibrary instance onHide registered');
-                if (callback) callback();
-              },
-              // 添加其他可能需要的方法
-              enableStandalone: function() {
-                console.log('StaticMediaLibrary instance enableStandalone called');
-                return Promise.resolve();
+          return Promise.resolve({
+            show: function(opts) {
+              console.log('StaticMediaLibrary instance show called with options:', opts);
+              return Promise.resolve();
+            },
+            hide: function() {
+              console.log('StaticMediaLibrary instance hide called');
+              return Promise.resolve();
+            },
+            onShow: function(callback) {
+              console.log('StaticMediaLibrary instance onShow registered');
+              if (callback) {
+                // 立即调用回调函数
+                setTimeout(callback, 0);
               }
-            };
-            
-            resolve(mediaLibraryInstance);
+              return Promise.resolve();
+            },
+            onHide: function(callback) {
+              console.log('StaticMediaLibrary instance onHide registered');
+              if (callback) {
+                // 立即调用回调函数
+                setTimeout(callback, 0);
+              }
+              return Promise.resolve();
+            },
+            enableStandalone: function() {
+              console.log('StaticMediaLibrary instance enableStandalone called');
+              return Promise.resolve();
+            }
           });
         };
         
@@ -89,12 +93,20 @@
         
         this.onShow = function(callback) {
           console.log('StaticMediaLibrary onShow registered');
-          if (callback) callback();
+          if (callback) {
+            // 立即调用回调函数
+            setTimeout(callback, 0);
+          }
+          return Promise.resolve();
         };
         
         this.onHide = function(callback) {
           console.log('StaticMediaLibrary onHide registered');
-          if (callback) callback();
+          if (callback) {
+            // 立即调用回调函数
+            setTimeout(callback, 0);
+          }
+          return Promise.resolve();
         };
         
         this.enableStandalone = function() {
