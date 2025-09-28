@@ -15,8 +15,9 @@ logo_url: '/images/logo.png'
 display_url: 'https://gautown.top'
 show_preview_links: true
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+# 全局媒体文件夹设置 - 统一指向public/images目录
+media_folder: "public/images"
+public_folder: "/images"
 
 # 媒体库配置
 media_library:
