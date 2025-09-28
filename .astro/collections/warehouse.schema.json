@@ -13,6 +13,9 @@
         "thumbnail": {
           "type": "string"
         },
+        "tags": {
+          "type": "string"
+        },
         "date": {
           "anyOf": [
             {
