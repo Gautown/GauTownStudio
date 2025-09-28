@@ -21,3 +21,4 @@ dist/
 
 # Temporary files
 public/styles/global.css.tmp
+src/pages/404.astro
