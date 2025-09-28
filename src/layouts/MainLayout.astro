@@ -25,6 +25,8 @@ const description = Astro.props.description || siteConfig?.data.description || '
 <body>
   <SiteHeader />
   
+  <slot name="hero" />
+  
   <main class="main-content">
     <slot />
   </main>
