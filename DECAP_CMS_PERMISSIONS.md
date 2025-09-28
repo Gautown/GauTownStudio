@@ -14,6 +14,7 @@
 6. 用户权限不足
 7. 媒体库配置不正确
 8. Content Security Policy (CSP) 配置阻止了必要资源加载
+9. Git Gateway令牌过期或无效
 
 ## 解决方案
 
@@ -80,6 +81,19 @@ backend:
     Content-Security-Policy = "frame-ancestors 'self' https://*.netlify.com https://*.netlify.app; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com https://*.netlify.app; object-src 'none'; connect-src 'self' https://*.netlify.com https://*.netlify.app https://api.github.com; font-src 'self' https://*.netlify.com https://*.netlify.app; img-src 'self' data: https://*.netlify.com https://*.netlify.app https://*.githubusercontent.com;"
 ```
 
+### 8. 重新颁发Git Gateway令牌
+
+如果遇到"Git Gateway Error: Please ask your site administrator to reissue the Git Gateway token"错误：
+
+1. 登录到Netlify控制台
+2. 选择您的站点
+3. 点击左侧菜单中的"Identity"
+4. 向下滚动到"Services"部分
+5. 找到"Git Gateway"
+6. 点击"Edit settings"
+7. 点击"Generate webhook signature"按钮
+8. 保存设置
+
 ## 调试步骤
 
 ### 1. 使用调试脚本
@@ -140,6 +154,16 @@ CMS.registerMediaLibrary({
 3. Git Gateway是否已启用
 4. 用户角色和权限设置是否正确
 5. Content Security Policy是否阻止了必要资源加载
+6. Git Gateway令牌是否有效
+
+### Git Gateway令牌错误
+
+如果遇到"Git Gateway Error: Please ask your site administrator to reissue the Git Gateway token"错误：
+
+1. 登录Netlify控制台
+2. 重新生成Git Gateway webhook签名
+3. 确保GitHub集成正常工作
+4. 检查仓库访问权限
 
 ## 高级故障排除
 

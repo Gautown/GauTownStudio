@@ -53,7 +53,7 @@
         this.show = function(options) {
           console.log('StaticMediaLibrary show called with options:', options);
           // 返回一个包含必要方法的对象
-          return Promise.resolve({
+          const mediaLibraryInstance = {
             show: function(opts) {
               console.log('StaticMediaLibrary instance show called with options:', opts);
               return Promise.resolve();
@@ -70,7 +70,10 @@
               console.log('StaticMediaLibrary instance onHide registered');
               if (callback) callback();
             }
-          });
+          };
+          
+          // 确保返回的对象有所有必需的方法
+          return Promise.resolve(mediaLibraryInstance);
         };
         
         this.hide = function() {
@@ -267,6 +270,17 @@
           setTimeout(checkDecapPermissions, 2000);
         });
       }
+      
+      // 添加Git Gateway错误处理
+      window.addEventListener('unhandledrejection', (event) => {
+        if (event.reason && event.reason.message) {
+          console.error('Unhandled promise rejection:', event.reason);
+          if (event.reason.message.includes('Git Gateway Error')) {
+            console.error('Git Gateway Error detected. Please check Netlify Identity and Git Gateway configuration.');
+            console.error('You may need to reissue the Git Gateway token in Netlify console.');
+          }
+        }
+      });
     </script>
   </body>
 </html>
