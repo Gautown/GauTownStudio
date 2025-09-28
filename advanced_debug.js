@@ -282,6 +282,57 @@ function checkGitGateway() {
   } catch (error) {
     console.log('✗ 检查后端时出错:', error.message);
   }
+  
+  // 检查认证状态
+  if (typeof window.netlifyIdentity !== 'undefined') {
+    const user = window.netlifyIdentity.currentUser();
+    if (user) {
+      console.log('✓ 用户已认证:', user.email);
+      if (user.token) {
+        console.log('✓ 访问令牌可用');
+      } else {
+        console.log('✗ 访问令牌缺失');
+      }
+    } else {
+      console.log('✗ 用户未认证');
+    }
+  } else {
+    console.log('✗ Netlify Identity未加载');
+  }
+}
+
+// 添加认证状态检查
+function checkAuthStatus() {
+  console.log('=== 认证状态检查 ===');
+  
+  if (typeof window.netlifyIdentity === 'undefined') {
+    console.log('✗ Netlify Identity未加载');
+    return;
+  }
+  
+  const user = window.netlifyIdentity.currentUser();
+  if (!user) {
+    console.log('✗ 用户未登录');
+    return;
+  }
+  
+  console.log('✓ 用户已登录:', user.email);
+  
+  // 检查访问令牌
+  if (user.token) {
+    console.log('✓ 访问令牌存在');
+    console.log('  - 令牌类型:', user.token.token_type);
+    console.log('  - 过期时间:', new Date(user.token.expires_at).toLocaleString());
+  } else {
+    console.log('✗ 访问令牌缺失');
+  }
+  
+  // 检查刷新令牌
+  if (user.refresh_token) {
+    console.log('✓ 刷新令牌存在');
+  } else {
+    console.log('⚠ 刷新令牌缺失');
+  }
 }
 
 // 运行所有检查
@@ -300,6 +351,8 @@ function runAllChecks() {
     checkNetwork();
     console.log('');
     checkGitGateway();
+    console.log('');
+    checkAuthStatus();
     console.log('');
     console.log('=== 诊断完成 ===');
   }, 1000);

@@ -94,6 +94,25 @@ backend:
 7. 点击"Generate webhook signature"按钮
 8. 保存设置
 
+### ACCESS TOKEN ERROR错误
+
+如果遇到"ACCESS TOKEN ERROR: Failed getting access token: Gotrue-js: failed getting jwt access token"错误：
+
+1. **重新生成Git Gateway令牌**（同上）
+2. **检查用户认证状态**：
+   - 确保您已通过Netlify Identity登录
+   - 检查您的邮箱是否已确认
+3. **清除浏览器缓存和Cookie**：
+   - 打开浏览器开发者工具
+   - 右键点击刷新按钮
+   - 选择"清空缓存并硬性重新加载"
+4. **重新登录**：
+   - 退出当前Netlify Identity会话
+   - 重新登录到Decap CMS
+5. **检查站点设置**：
+   - 确保Netlify Identity服务已正确启用
+   - 确保Git Gateway服务已正确配置
+
 ## 调试步骤
 
 ### 1. 使用调试脚本
@@ -209,10 +228,14 @@ const portfolio = defineCollection({
 
 如果遇到"Git Gateway Error: Please ask your site administrator to reissue the Git Gateway token"错误：
 
-1. 登录Netlify控制台
-2. 重新生成Git Gateway webhook签名
-3. 确保GitHub集成正常工作
-4. 检查仓库访问权限
+1. 登录到Netlify控制台
+2. 选择您的站点
+3. 点击左侧菜单中的"Identity"
+4. 向下滚动到"Services"部分
+5. 找到"Git Gateway"
+6. 点击"Edit settings"
+7. 点击"Generate webhook signature"按钮
+8. 保存设置
 
 ## 高级故障排除
 

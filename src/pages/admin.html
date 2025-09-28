@@ -149,9 +149,13 @@
         console.log('Initializing Netlify Identity...');
         
         // 初始化Netlify Identity Widget
-        window.netlifyIdentity.init({
-          APIUrl: "https://gautown.netlify.app/.netlify/identity"
-        });
+        try {
+          window.netlifyIdentity.init({
+            APIUrl: "https://gautown.netlify.app/.netlify/identity"
+          });
+        } catch (initError) {
+          console.error('Failed to initialize Netlify Identity:', initError);
+        }
         
         window.netlifyIdentity.on("init", user => {
           console.log('Netlify Identity init event:', user);
@@ -204,6 +208,9 @@
         // 添加错误处理
         window.netlifyIdentity.on('error', (err) => {
           console.error('Netlify Identity error:', err);
+          if (err.message && err.message.includes('access token')) {
+            console.error('ACCESS TOKEN ERROR detected. Please reissue the Git Gateway token in Netlify console.');
+          }
         });
       } else {
         console.log('Netlify Identity not available (local mode)');
