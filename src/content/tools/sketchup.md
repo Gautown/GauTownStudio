@@ -15,6 +15,7 @@ SketchUp 最初由 Last Software 公司开发，2006 年被谷歌公司收购，
 * **协作性好：**Trimble Connect 可以让用户在云端共享模型与项目文件，让团队成员随时随地访问、审阅和协同作业，实现无缝工作流程。
 * **兼容性强：**SketchUp 具有优秀的通用性，能够和其它不同类型的三维数据进行格式转换，可与 Auto CAD、3DSMAX 等多种绘图软件对接，实现协同工作。
 
+---
 ### 下载链接  
 [SketchUp 2024 Windows 64 Bit](https://download.sketchup.com/SketchUp-2024-0-594-241.exe)  
 [SketchUp 2025 离线安装程序](https://download.sketchup.com/SketchUpFull-2025-0-660-288.exe)
