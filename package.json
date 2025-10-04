@@ -10,8 +10,7 @@
     "cms:dev": "astro dev",
     "cms:build": "astro build",
     "cms:dev:local": "astro dev --port 4321",
-    "cms:dev:local-server": "decap-server",
-    "netlify-build": "npm install && astro build"
+    "cms:dev:local-server": "decap-server"
   },
   "keywords": [
     "decap-cms",
