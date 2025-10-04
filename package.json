@@ -26,7 +26,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "bootstrap-icons": "^1.13.1",
-    "decap-cms-app": "3.8.3",
+    "decap-cms-app": "3.6.4",
     "jotai": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
