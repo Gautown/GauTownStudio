@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    
     "bootstrap-icons": "^1.13.1",
     "decap-cms-app": "3.6.4",
     "decap-cms-ui-auth": "3.2.3",
@@ -35,6 +34,7 @@
     "redux": "3.7.2",
     "remark-gfm": "^4.0.0",
     "remark-smartypants": "^3.0.2",
+    "sharp": "^0.34.4",
     "typescript": "^5.9.2",
     "zustand": "^4.4.0"
   },
