@@ -7,6 +7,7 @@
     <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/images/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="/images/logo.png">
+    <title>内容管理器</title>
     <!-- 根据环境自动选择配置文件 -->
     <script>
       // 检查是否在本地开发模式下运行
@@ -18,292 +19,60 @@
       // 动态设置配置文件URL
       const configUrl = isLocal ? '/admin/config.local.yml' : '/admin/config.yml';
       document.write('<link href="' + configUrl + '" type="text/yaml" rel="cms-config-url" />');
-      
-      // 调试信息
-      console.log('Decap CMS Environment Detection:');
-      console.log('- Hostname:', window.location.hostname);
-      console.log('- Is Local:', isLocal);
-      console.log('- Config URL:', configUrl);
     </script>
     <link href="/admin/custom.css" rel="stylesheet" />
-    <title>内容管理器</title>
   </head>
   <body>
-    <!-- 只在生产环境加载Netlify Identity -->
+    <div id="nc-root"></div>
+    <!-- 使用CDN版本的Decap CMS以避免React版本冲突 -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      // 只在生产环境加载Netlify Identity
-      if (!isLocal) {
-        document.write('<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"><\/script>');
-      }
-    </script>
-    
-    <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
-    <script>
-      // 创建一个完全符合Decap CMS要求的静态媒体库实现
-      var StaticMediaLibrary = function() {
-        this.name = 'static';
-        this.config = {};
-        
-        this.init = function(config) {
-          console.log('StaticMediaLibrary init called with config:', config);
-          this.config = config || {};
-          // 返回一个resolved的Promise
-          return Promise.resolve();
-        };
-        
-        this.show = function(options) {
-          console.log('StaticMediaLibrary show called with options:', options);
-          // 返回一个Promise，resolve一个包含必要方法的对象
-          return Promise.resolve({
-            show: function(opts) {
-              console.log('StaticMediaLibrary instance show called with options:', opts);
+      // 等待DOM加载完成后初始化Decap CMS
+      document.addEventListener('DOMContentLoaded', function() {
+        // 检查Decap CMS是否已加载
+        if (typeof CMS !== 'undefined') {
+          console.log('Decap CMS loaded successfully');
+          
+          // 注册静态媒体库
+          CMS.registerMediaLibrary({
+            name: 'static',
+            init: function() {
+              console.log('Static media library initialized');
+              return Promise.resolve();
+            },
+            show: function() {
+              console.log('Static media library show called');
               return Promise.resolve();
             },
             hide: function() {
-              console.log('StaticMediaLibrary instance hide called');
+              console.log('Static media library hide called');
               return Promise.resolve();
             },
             onShow: function(callback) {
-              console.log('StaticMediaLibrary instance onShow registered');
-              if (callback) {
-                // 立即调用回调函数
-                setTimeout(callback, 0);
-              }
+              console.log('Static media library onShow called');
               return Promise.resolve();
             },
             onHide: function(callback) {
-              console.log('StaticMediaLibrary instance onHide registered');
-              if (callback) {
-                // 立即调用回调函数
-                setTimeout(callback, 0);
-              }
+              console.log('Static media library onHide called');
               return Promise.resolve();
             },
             enableStandalone: function() {
-              console.log('StaticMediaLibrary instance enableStandalone called');
+              console.log('Static media library enableStandalone called');
               return Promise.resolve();
             }
           });
-        };
-        
-        this.hide = function() {
-          console.log('StaticMediaLibrary hide called');
-          return Promise.resolve();
-        };
-        
-        this.onShow = function(callback) {
-          console.log('StaticMediaLibrary onShow registered');
-          if (callback) {
-            // 立即调用回调函数
-            setTimeout(callback, 0);
-          }
-          return Promise.resolve();
-        };
-        
-        this.onHide = function(callback) {
-          console.log('StaticMediaLibrary onHide registered');
-          if (callback) {
-            // 立即调用回调函数
-            setTimeout(callback, 0);
-          }
-          return Promise.resolve();
-        };
-        
-        this.enableStandalone = function() {
-          console.log('StaticMediaLibrary enableStandalone called');
-          return Promise.resolve();
-        };
-      };
-      
-      // 注册静态媒体库以解决"Missing external media library 'static'"错误
-      CMS.registerMediaLibrary(new StaticMediaLibrary());
-      
-      // 注册本地后端
-      CMS.registerBackend('local', {
-        init: () => Promise.resolve()
-      });
-      
-      // 添加调试信息
-      console.log('Decap CMS Initialization:');
-      console.log('- Netlify Identity available:', typeof window.netlifyIdentity !== 'undefined');
-      console.log('- CMS object available:', typeof window.CMS !== 'undefined');
-      
-      // 本地模式下自动登录
-      if (isLocal) {
-        console.log('Setting up local mode auto-login...');
-        // 确保在CMS初始化之前设置用户
-        CMS.once('preAuth', () => {
-          console.log('Local mode: Attempting auto-login');
-          // 在本地模式下创建一个虚拟用户
-          const user = {
-            email: 'local@developer.local',
-            name: 'Local Developer'
-          };
-          CMS.setUser(user);
-          CMS.events.emit('login', user);
-        });
-      }
-      
-      // 只在生产环境初始化Netlify Identity
-      if (window.netlifyIdentity && !isLocal) {
-        console.log('Initializing Netlify Identity...');
-        
-        // 初始化Netlify Identity Widget
-        try {
-          window.netlifyIdentity.init({
-            APIUrl: "https://gautown.netlify.app/.netlify/identity"
-          });
-        } catch (initError) {
-          console.error('Failed to initialize Netlify Identity:', initError);
-        }
-        
-        window.netlifyIdentity.on("init", user => {
-          console.log('Netlify Identity init event:', user);
-          if (!user) {
-            console.log('User not logged in - showing login prompt');
-          } else {
-            console.log('User is logged in:', user.email);
-            
-            // 检查用户权限
-            if (user.app_metadata && user.app_metadata.roles) {
-              console.log('User roles:', user.app_metadata.roles);
-            }
-            
-            // 检查用户确认状态
-            if (user.confirmed_at) {
-              console.log('User email confirmed at:', user.confirmed_at);
-            } else {
-              console.warn('User email not confirmed - this may cause permission issues');
-            }
-          }
-        });
-        
-        // 检查URL中是否有身份验证信息
-        if (window.location.hash && window.location.hash.indexOf('#access_token') !== -1) {
-          window.netlifyIdentity.on('login', () => {
-            window.location.href = '/admin/';
-          });
-        }
-        
-        // 添加权限检查
-        window.netlifyIdentity.on('login', (user) => {
-          console.log('User logged in:', user);
           
-          // 检查用户权限
-          if (user && user.email) {
-            // 检查用户是否已确认邮箱
-            if (!user.confirmed_at) {
-              console.warn('User email not confirmed. Please check your email and confirm your account.');
-            }
-            
-            // 检查用户角色
-            if (user.app_metadata && user.app_metadata.roles) {
-              console.log('User roles:', user.app_metadata.roles);
-            } else {
-              console.warn('User has no roles assigned. This may cause permission issues.');
-            }
+          // 在本地开发模式下注册本地后端
+          if (isLocal) {
+            CMS.registerBackend('local', {
+              init: function() {
+                console.log('Local backend initialized');
+                return Promise.resolve();
+              }
+            });
           }
-        });
-        
-        // 添加错误处理
-        window.netlifyIdentity.on('error', (err) => {
-          console.error('Netlify Identity error:', err);
-          if (err.message && err.message.includes('access token')) {
-            console.error('ACCESS TOKEN ERROR detected. Please reissue the Git Gateway token in Netlify console.');
-          }
-        });
-      } else {
-        console.log('Netlify Identity not available (local mode)');
-      }
-      
-      // 添加错误处理
-      window.addEventListener('error', (event) => {
-        console.error('Global error caught:', event.error);
-        if (event.error && event.error.message) {
-          if (event.error.message.includes('permissions')) {
-            console.log('权限错误 detected:', event.error.message);
-          } else if (event.error.message.includes('media')) {
-            console.log('媒体库错误 detected:', event.error.message);
-          }
-        }
-      });
-      
-      // 添加本地开发提示
-      if (window.location.hostname === 'localhost' || 
-          window.location.hostname === '127.0.0.1' ||
-          window.location.hostname === '0.0.0.0') {
-        console.log('Decap CMS running in local development mode');
-        console.log('Using local configuration: /admin/config.local.yml');
-      } else {
-        console.log('Decap CMS running in production mode');
-        console.log('Using production configuration: /admin/config.yml');
-        
-        // 添加生产环境的额外检查
-        setTimeout(() => {
-          if (!window.netlifyIdentity) {
-            console.error('Netlify Identity Widget failed to load. Check CSP settings in netlify.toml');
-          }
-        }, 3000);
-      }
-      
-      // 添加权限检查函数
-      function checkDecapPermissions() {
-        console.log('=== Decap CMS Permissions Check ===');
-        
-        // 检查是否在本地模式
-        if (isLocal) {
-          console.log('✓ Running in local mode - permissions check skipped');
-          return;
-        }
-        
-        // 检查Netlify Identity
-        if (!window.netlifyIdentity) {
-          console.error('✗ Netlify Identity Widget not loaded');
-          return;
-        }
-        
-        // 检查用户状态
-        const user = window.netlifyIdentity.currentUser();
-        if (!user) {
-          console.warn('ℹ No user logged in');
-          return;
-        }
-        
-        console.log('✓ User logged in:', user.email);
-        
-        // 检查用户确认状态
-        if (!user.confirmed_at) {
-          console.error('✗ User email not confirmed. Please check your email and confirm your account.');
-          return;
-        }
-        
-        console.log('✓ User email confirmed');
-        
-        // 检查角色
-        if (user.app_metadata && user.app_metadata.roles) {
-          console.log('✓ User roles:', user.app_metadata.roles);
         } else {
-          console.warn('⚠ User has no roles assigned');
-        }
-        
-        console.log('=== End Permissions Check ===');
-      }
-      
-      // 在页面加载完成后运行权限检查
-      if (!isLocal) {
-        window.addEventListener('load', () => {
-          setTimeout(checkDecapPermissions, 2000);
-        });
-      }
-      
-      // 添加Git Gateway错误处理
-      window.addEventListener('unhandledrejection', (event) => {
-        if (event.reason && event.reason.message) {
-          console.error('Unhandled promise rejection:', event.reason);
-          if (event.reason.message.includes('Git Gateway Error')) {
-            console.error('Git Gateway Error detected. Please check Netlify Identity and Git Gateway configuration.');
-            console.error('You may need to reissue the Git Gateway token in Netlify console.');
-          }
+          console.error('Decap CMS failed to load');
         }
       });
     </script>

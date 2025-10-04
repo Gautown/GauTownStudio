@@ -10,13 +10,13 @@
 }
 
 /***best beautiful blue***/
-*{text-decoration: none;
-font-weight: normal;
-list-style: none;
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-line-height: 1.5;
+*{
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.5;
 }
 
 .bi::before,
@@ -459,14 +459,13 @@ body {
 .view-all {
   display: block;
   text-align: center;
-  margin-top: 1rem;
   color: white;
   text-decoration: none;
   font-weight: 500;
   background-color: #333;
-  border-radius: 0.5rem;
-  width: 9rem;
-  line-height: 3;
+  border-radius: .5rem;
+  width: 8rem;
+  line-height:2.5;
   margin:1rem auto 0 auto;
   
 }
@@ -534,7 +533,8 @@ body {
 .breadcrumb {
   background-color: #fff;
   height: 3rem;
-  
+  border-bottom: #ccc solid 1px;
+  margin-bottom: 3rem;
 }
 
 .breadcrumb ol {
@@ -542,11 +542,13 @@ body {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+ 
 }
 
 .breadcrumb li {
   display: flex;
   align-items: center;
+   
 }
 
 .breadcrumb-prefix {
@@ -675,32 +677,53 @@ body {
 }
 
 /* 作品详情页面 */
+.portfolio-detail {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
+ gap: 1rem;
+  width: 100%; /* 容器总宽度 */
+}
 .portfolio-detail h1 {
   margin-bottom: 1rem;
   color: #2c3e50;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+
 }
 
 .portfolio-meta {
   color: #7f8c8d;
-  margin-bottom: 1rem;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  margin-top: 3rem;
 }
 
 .portfolio-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 2rem;
+ width: 100%;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+ 
 }
-
 .portfolio-content {
   line-height: 1.8;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+
 }
 
+/* 确保Markdown加粗文本正确渲染 */
+.portfolio-content strong,
+.portfolio-content b {
+  font-weight: bold;
+}
 /* 标签样式 */
 .portfolio-tags {
   margin-bottom: 1rem;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  margin-top: 5rem;
 }
-
 .portfolio-tags h3 {
   margin: 0 0 0.5rem 0;
   font-size: 1rem;
@@ -715,7 +738,7 @@ body {
 
 .tag {
   display: inline-block;
-  background-color: #3498db;
+  background-color: #333;
   color: white;
   padding: 0.3rem 0.6rem;
   border-radius: 1rem;

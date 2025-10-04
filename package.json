@@ -9,7 +9,8 @@
     "start": "astro dev",
     "cms:dev": "astro dev",
     "cms:build": "astro build",
-    "cms:dev:local": "astro dev --port 4321"
+    "cms:dev:local": "astro dev --port 4321",
+    "cms:dev:local-server": "decap-server"
   },
   "keywords": [
     "decap-cms",
@@ -24,10 +25,15 @@
     "bootstrap-icons": "^1.13.1",
     "decap-cms-app": "^3.8.3",
     "jotai": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remark-gfm": "^4.0.0",
+    "remark-smartypants": "^3.0.2",
     "typescript": "^5.9.2",
     "zustand": "^4.4.0"
   },
   "devDependencies": {
-    "astro": "^5.13.10"
+    "astro": "^5.13.10",
+    "decap-server": "^3.3.1"
   }
 }

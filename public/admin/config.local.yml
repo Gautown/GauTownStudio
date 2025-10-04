@@ -2,8 +2,8 @@
 # 用于本地开发时的配置，不依赖远程Git Gateway
 
 backend:
-  name: 'local'
-  label: '本地开发'
+  name: proxy
+  proxy_url: http://localhost:8081/api/v1
 
 # 本地化配置
 locale: 'zh_Hans'

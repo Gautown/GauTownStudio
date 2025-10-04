@@ -17,6 +17,22 @@
 4. 访问网站: http://localhost:4321
 5. 访问管理后台: http://localhost:4322/admin.html
 
+## 本地开发
+
+为了在本地完全使用Decap CMS的编辑功能，您需要启动本地代理服务器：
+
+1. 在一个终端中启动开发服务器:
+   ```bash
+   npm run dev
+   ```
+
+2. 在另一个终端中启动本地CMS服务器:
+   ```bash
+   npm run cms:dev:local-server
+   ```
+
+3. 访问管理后台: http://localhost:4321/admin.html
+
 ## 项目结构
 
 - `src/content/` - 内容文件 (Markdown)

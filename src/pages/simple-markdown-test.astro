@@ -1,0 +1,26 @@
+---
+const markdownContent = `
+This is **bold text**.
+
+This is __bold text__.
+
+This is *italic text*.
+
+This is _italic text_.
+`;
+
+// 使用Astro内置的Markdown渲染功能
+---
+
+<h1>Simple Markdown Test</h1>
+
+<div>
+  <!-- 直接在模板中使用Markdown -->
+  This is **bold text**.
+  
+  This is __bold text__.
+  
+  This is *italic text*.
+  
+  This is _italic text_.
+</div>

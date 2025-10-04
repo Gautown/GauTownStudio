@@ -1,0 +1,24 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const tool = await getEntry('tools', 'sketchup') as CollectionEntry<'tools'>;
+const { Content } = await render(tool);
+---
+
+<h1>工具详情测试页面</h1>
+
+<h2>原始Markdown内容</h2>
+<pre>{tool.body}</pre>
+
+<h2>渲染后的内容</h2>
+<div class="portfolio-content">
+  <Content />
+</div>
+
+<style>
+  .portfolio-content strong,
+  .portfolio-content b {
+    font-weight: bold;
+  }
+</style>
