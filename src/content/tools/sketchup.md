@@ -34,7 +34,9 @@ SketchUp 最初由 Last Software 公司开发，2006 年被谷歌公司收购，
 
 #### for Windows 
 
-[SketchUpFull-2025-0-660-288](https://download.sketchup.com/SketchUpFull-2025-0-660-288.exe)
+[SketchUp 2024 Windows 64 Bit](https://download.sketchup.com/SketchUp-2024-0-594-241.exe)
+
+[SketchUp 2025 离线安装程序](https://download.sketchup.com/SketchUpFull-2025-0-660-288.exe)
 
 [SketchUp-2024-0-594-241](https://download.sketchup.com/SketchUp-2024-0-594-241.exe)
 
