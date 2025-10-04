@@ -11,7 +11,7 @@
     "cms:build": "astro build",
     "cms:dev:local": "astro dev --port 4321",
     "cms:dev:local-server": "decap-server",
-    "netlify-build": "npm ci && astro build"
+    "netlify-build": "npm install && astro build"
   },
   "keywords": [
     "decap-cms",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@rollup/rollup-linux-x64-gnu": "^4.24.0",
+    
     "bootstrap-icons": "^1.13.1",
     "decap-cms-app": "3.6.4",
     "jotai": "^2.0.0",
