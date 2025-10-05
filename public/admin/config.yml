@@ -57,7 +57,7 @@ collections:
 
   - name: "warehouse"
     label: "仓库"
-    collections:
+    files:
       - name: "models"
         label: "模型"
         folder: "src/content/warehouse/models"
