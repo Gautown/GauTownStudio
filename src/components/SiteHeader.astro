@@ -43,9 +43,9 @@ console.log('Navigation data:', navigation);
         {navigation.length > 0 ? (
           navigation.map((item) => (
             <li class="nav-item">
-              {item.children ? (
+              {item.children && item.children.length > 0 ? (
                 <div class="dropdown">
-                  <a href={item.url} class="nav-link">{item.name}</a>
+                  <a href={item.url} class="nav-link dropdown-toggle">{item.name}</a>
                   <div class="dropdown-content">
                     {item.children.map((child) => (
                       <a href={child.url} class="dropdown-link">{child.name}</a>
