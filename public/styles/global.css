@@ -1,5 +1,4 @@
 /* 全局样式文件 */
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
 
 /* Bootstrap Icons */
 @font-face {
@@ -185,6 +184,57 @@ body {
 
 .nav-link:hover {
   color: #3498db;
+}
+
+/* 导航下拉菜单样式 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--bg-color);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border-radius: 4px;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content .dropdown-link {
+  color: var(--text-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-content .dropdown-link:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* 移动端下拉菜单特殊处理 */
+@media (max-width: 768px) {
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    display: block;
+    background-color: transparent;
+    padding-left: 1rem;
+  }
+  
+  .dropdown-content .dropdown-link {
+    padding: 8px 0;
+    border-bottom: none;
+  }
 }
 
 /* 搜索项 */

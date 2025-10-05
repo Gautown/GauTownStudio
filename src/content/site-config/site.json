@@ -18,7 +18,21 @@
     },
     {
       "name": "仓库",
-      "url": "/warehouse"
+      "url": "/warehouse",
+      "children": [
+        {
+          "name": "模型",
+          "url": "/warehouse/models"
+        },
+        {
+          "name": "贴图",
+          "url": "/warehouse/textures"
+        },
+        {
+          "name": "HDRIs",
+          "url": "/warehouse/hdris"
+        }
+      ]
     },
     {
       "name": "笔记",

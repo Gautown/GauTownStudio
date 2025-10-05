@@ -1,0 +1,43 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const warehouses = (await getCollection('warehouse')).filter(item => item.data.category === '贴图');
+---
+
+<MainLayout title="贴图仓库">
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '/warehouse', label: '仓库' },
+      { href: '#', label: '贴图' }
+    ]} 
+  />
+  
+  <h2>贴图</h2>
+  
+  <div class="content-grid grid-5">
+    {warehouses.map(warehouse => (
+      <a href={`/warehouse/${warehouse.slug}`} class="content-card" aria-label={`查看贴图：${warehouse.data.title}`}>
+        <div class="card-image">
+          <img 
+            src={warehouse.data.thumbnail || "/images/noimg.gif"} 
+            alt={warehouse.data.title} 
+            onerror="this.src='/images/noimg.gif'" 
+            class="placeholder-image" 
+          />
+        </div>
+        <div class="card-content">
+          <span class="card-tag">贴图</span>
+          <h3 class="card-title">{warehouse.data.title}</h3>
+          <p class="card-date">{warehouse.data.date ? new Date(warehouse.data.date).toLocaleDateString('zh-CN') : '未知日期'}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+  
+  {warehouses.length === 0 && (
+    <p style="text-align: center; margin-top: 2rem;">暂无贴图项目</p>
+  )}
+</MainLayout>

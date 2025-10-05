@@ -41,9 +41,20 @@ console.log('Navigation data:', navigation);
       <ul class="nav-list">
         {/* 添加调试信息 */}
         {navigation.length > 0 ? (
-          navigation.map((item: { name: string; url: string }) => (
+          navigation.map((item) => (
             <li class="nav-item">
-              <a href={item.url} class="nav-link">{item.name}</a>
+              {item.children ? (
+                <div class="dropdown">
+                  <a href={item.url} class="nav-link">{item.name}</a>
+                  <div class="dropdown-content">
+                    {item.children.map((child) => (
+                      <a href={child.url} class="dropdown-link">{child.name}</a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a href={item.url} class="nav-link">{item.name}</a>
+              )}
             </li>
           ))
         ) : (
