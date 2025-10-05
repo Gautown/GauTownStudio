@@ -2,7 +2,7 @@
 title: V-Ray Next 7.x for SketchUp
 description: 测试Markdown加粗语法是否正常工作
 thumbnail: /images/v-ray.png
-tags: 测试,Markdown
+tags: 软件,渲染器
 date: 2025-10-04T00:00:00.000+08:00
 ---
 
