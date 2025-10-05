@@ -685,6 +685,7 @@ body {
   width: 100%; /* 容器总宽度 */
 }
 .portfolio-detail h1 {
+  text-align: center;
   margin-bottom: 1rem;
   color: #2c3e50;
   grid-column: 2 / 3;
@@ -693,6 +694,7 @@ body {
 }
 
 .portfolio-meta {
+   text-align: center;
   color: #7f8c8d;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
@@ -719,6 +721,7 @@ body {
 }
 /* 标签样式 */
 .portfolio-tags {
+   text-align: center;
   margin-bottom: 1rem;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
@@ -733,6 +736,7 @@ body {
 .tag-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -741,7 +745,7 @@ body {
   background-color: #333;
   color: white;
   padding: 0.3rem 0.6rem;
-  border-radius: 1rem;
+  border-radius: .5rem;
   font-size: 0.9rem;
 }
 
@@ -1067,6 +1071,18 @@ th {
   .sidebar-title {
     font-size: 1.1rem;
   }
+  /* 作品详情页面 */
+.portfolio-detail {
+  display: block;
+}
+.portfolio-meta {
+
+  margin-top:0;
+}
+.portfolio-tags {
+
+  margin-top:0;
+}
 }
 
 /* 响应式断点 - 平板设备 ( 769px - 1024px ) */
