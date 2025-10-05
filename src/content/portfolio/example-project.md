@@ -2,8 +2,12 @@
 title: 示例项目
 description: 这是一个示例项目描述
 thumbnail: /images/example.jpg
-date: 2025-09-23T00:00:00Z
+tags: 示例,项目
+date: 2023-01-01T00:00:00.000+08:00
 ---
+# 示例项目
+
+这是一个示例项目的详细内容。
 
 ## 项目介绍
 

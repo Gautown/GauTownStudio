@@ -1,7 +1,7 @@
 ---
 title: 示例仓库
 description: 这是一个示例仓库描述
-thumbnail: /images/warehouse/example.jpg
+thumbnail: /images/example.jpg
 date: 2025-09-23T00:00:00Z
 ---
 

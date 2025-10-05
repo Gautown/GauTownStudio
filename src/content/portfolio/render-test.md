@@ -1,10 +1,13 @@
 ---
-title: 作品集渲染测试
-description: 测试作品集markdown渲染功能
+title: 渲染测试
+description: 这是一个渲染测试项目
 thumbnail: /images/example.jpg
-tags: 测试,渲染,作品集
-date: 2025-09-30
+tags: 测试,渲染
+date: 2023-01-04T00:00:00.000+08:00
 ---
+# 渲染测试
+
+这是一个渲染测试项目的详细内容。
 
 ## 作品集测试标题
 
@@ -43,7 +46,7 @@ date: 2025-09-30
 行内代码：`console.log('Hello World')`
 
 代码块：
-```javascript
+``javascript
 function hello() {
   console.log('Hello World');
 }

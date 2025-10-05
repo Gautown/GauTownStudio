@@ -1,10 +1,13 @@
 ---
-title: 带标签的示例项目
-description: 这是一个带有标签的示例项目描述
+title: 带标签的示例
+description: 这是一个带标签的示例项目
 thumbnail: /images/example.jpg
-tags: Astro, Decap CMS, TailwindCSS
-date: 2025-09-28T00:00:00Z
+tags: 示例,标签,测试
+date: 2023-01-02T00:00:00.000+08:00
 ---
+# 带标签的示例
+
+这是一个带标签的示例项目的详细内容。
 
 ## 项目介绍
 
