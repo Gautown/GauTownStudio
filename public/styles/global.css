@@ -683,6 +683,7 @@ body {
   grid-template-rows: auto auto;
  gap: 1rem;
   width: 100%; /* 容器总宽度 */
+
 }
 .portfolio-detail h1 {
   text-align: center;
