@@ -57,16 +57,40 @@ collections:
 
   - name: "warehouse"
     label: "仓库"
-    folder: "src/content/warehouse"
-    create: true
-    fields:
-      - { label: "标题", name: "title", widget: "string" }
-      - { label: "描述", name: "description", widget: "string" }
-      - { label: "缩略图", name: "thumbnail", widget: "image" }
-      - { label: "分类", name: "category", widget: "select", options: ["模型", "贴图", "HDRIs"], default: "模型" }
-      - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,模型,插件" }
-      - { label: "发布日期", name: "date", widget: "datetime" }
-      - { label: "正文", name: "body", widget: "markdown" }
+    collections:
+      - name: "models"
+        label: "模型"
+        folder: "src/content/warehouse/models"
+        create: true
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "描述", name: "description", widget: "string" }
+          - { label: "缩略图", name: "thumbnail", widget: "image" }
+          - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,模型,3D" }
+          - { label: "发布日期", name: "date", widget: "datetime" }
+          - { label: "正文", name: "body", widget: "markdown" }
+      - name: "textures"
+        label: "贴图"
+        folder: "src/content/warehouse/textures"
+        create: true
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "描述", name: "description", widget: "string" }
+          - { label: "缩略图", name: "thumbnail", widget: "image" }
+          - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,贴图,材质" }
+          - { label: "发布日期", name: "date", widget: "datetime" }
+          - { label: "正文", name: "body", widget: "markdown" }
+      - name: "hdris"
+        label: "HDRIs"
+        folder: "src/content/warehouse/hdris"
+        create: true
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "描述", name: "description", widget: "string" }
+          - { label: "缩略图", name: "thumbnail", widget: "image" }
+          - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,HDRI,环境" }
+          - { label: "发布日期", name: "date", widget: "datetime" }
+          - { label: "正文", name: "body", widget: "markdown" }
 
   - name: "notes"
     label: "笔记"
