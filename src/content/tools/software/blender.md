@@ -2,17 +2,10 @@
 title: Blender4.5.x for Windows/macOS/Linux
 description: Blender 是一款免费开源的全能型 3D
   创作软件，涵盖建模、动画、渲染、合成、视频编辑等全流程功能，广泛应用于影视制作、游戏开发、产品设计、教育科研等领域。
-tags: 三维设计, Blender, 软件
-date: 2025-10-05T23:33:00.000+08:00
->>>>>>> 49e42613d140683a1a280b6043d729b3deec5cdf:src/content/tools/blender.md
 thumbnail: /images/blender.webp
 category: 软件
 tags: 三维设计, Blender, 动画设计, 视频剪辑
 date: 2025-09-23T00:00:00.000Z
-=======
-tags: 三维设计, Blender, 软件
-date: 2025-10-05T23:33:00.000+08:00
->>>>>>> 49e42613d140683a1a280b6043d729b3deec5cdf:src/content/tools/blender.md
 ---
 ### 工具介绍
 
