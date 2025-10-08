@@ -41,6 +41,7 @@ const tools = defineCollection({
     description: z.string(),
     thumbnail: z.string().optional(),
     tags: z.string().optional().transform(parseTags),
+    category: z.string().optional(),
     date: z.date().optional(),
   }),
 });
@@ -52,6 +53,7 @@ const warehouse = defineCollection({
     description: z.string(),
     thumbnail: z.string().optional(),
     tags: z.string().optional().transform(parseTags),
+    category: z.string().optional(),
     date: z.date().optional(),
   }),
 });
@@ -79,6 +81,10 @@ const siteConfig = defineCollection({
     navigation: z.array(z.object({
       name: z.string(),
       url: z.string(),
+      children: z.array(z.object({
+        name: z.string(),
+        url: z.string(),
+      })).optional(),
     })),
     friendLinks: z.array(z.object({
       name: z.string(),

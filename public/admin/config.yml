@@ -43,9 +43,20 @@ collections:
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
-  - name: "tools"
-    label: "工具"
-    folder: "src/content/tools"
+  - name: "tools-software"
+    label: "工具 - 软件"
+    folder: "src/content/tools/software"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "string" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
+      - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：工具,效率,开发" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+  - name: "tools-plugins"
+    label: "工具 - 插件"
+    folder: "src/content/tools/Plugins"
     create: true
     fields:
       - { label: "标题", name: "title", widget: "string" }
@@ -55,15 +66,36 @@ collections:
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
 
-  - name: "warehouse"
-    label: "仓库"
-    folder: "src/content/warehouse"
+  - name: "warehouse-models"
+    label: "仓库 - 模型"
+    folder: "src/content/warehouse/models"
     create: true
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "描述", name: "description", widget: "string" }
       - { label: "缩略图", name: "thumbnail", widget: "image" }
-      - { label: "分类", name: "category", widget: "select", options: ["模型", "贴图", "HDRIs"], default: "模型" }
+      - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,模型,插件" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+  - name: "warehouse-textures"
+    label: "仓库 - 贴图"
+    folder: "src/content/warehouse/textures"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "string" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
+      - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,模型,插件" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+  - name: "warehouse-hdris"
+    label: "仓库 - HDRIs"
+    folder: "src/content/warehouse/hdris"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "string" }
+      - { label: "缩略图", name: "thumbnail", widget: "image" }
       - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,模型,插件" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
@@ -109,6 +141,13 @@ collections:
             fields:
               - { label: "菜单名称", name: "name", widget: "string" }
               - { label: "链接地址", name: "url", widget: "string" }
+              - label: "子菜单"
+                name: "children"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "子菜单名称", name: "name", widget: "string" }
+                  - { label: "子菜单链接", name: "url", widget: "string" }
           - label: "友情链接"
             name: "friendLinks"
             widget: "list"

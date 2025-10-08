@@ -1,0 +1,43 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const tools = (await getCollection('tools')).filter(item => item.data.category === '插件');
+---
+
+<MainLayout title="插件工具">
+  <Breadcrumb 
+    links={[
+      { href: '/', label: '首页' },
+      { href: '/tools', label: '工具' },
+      { href: '#', label: '插件' }
+    ]} 
+  />
+  
+  <h2>插件</h2>
+  
+  <div class="content-grid grid-5">
+    {tools.map(tool => (
+      <a href={`/tools/${tool.slug}`} class="content-card" aria-label={`查看工具：${tool.data.title}`}>
+        <div class="card-image">
+          <img 
+            src={tool.data.thumbnail || "/images/noimg.gif"} 
+            alt={tool.data.title} 
+            onerror="this.src='/images/noimg.gif'" 
+            class="placeholder-image" 
+          />
+        </div>
+        <div class="card-content">
+          <span class="card-tag">插件</span>
+          <h3 class="card-title">{tool.data.title}</h3>
+          <p class="card-date">{tool.data.date ? new Date(tool.data.date).toLocaleDateString('zh-CN') : '未知日期'}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+  
+  {tools.length === 0 && (
+    <p style="text-align: center; margin-top: 2rem;">暂无插件工具项目</p>
+  )}
+</MainLayout>

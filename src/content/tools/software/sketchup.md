@@ -2,6 +2,7 @@
 title: " SketchUp Pro 2025 v25.0.660 Windows/macOS"
 description: SketchUp 又叫草图大师，是一款由美国天宝公司（Trimble）开发的三维建模与设计软件
 thumbnail: /images/sketchup.svg
+category: 插件
 tags: 三维设计,三维设计,装饰设计,家具设计
 date: 2025-09-28T01:03:00.000+08:00
 ---

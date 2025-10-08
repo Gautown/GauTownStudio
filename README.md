@@ -75,6 +75,7 @@
 详细信息请参考 [Decap CMS 官方文档](https://decapcms.org/docs/authentication-backends/)。
 
 构建项目请使用 `npm run build` 命令。
+启动服务 `npm run cms:dev:local-server`
 
 ## 故障排除
 
