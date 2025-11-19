@@ -54,6 +54,7 @@ collections:
       - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：工具,效率,开发" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
+
   - name: "tools-plugins"
     label: "工具 - 插件"
     folder: "src/content/tools/Plugins"
@@ -77,6 +78,7 @@ collections:
       - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,模型,插件" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
+
   - name: "warehouse-textures"
     label: "仓库 - 贴图"
     folder: "src/content/warehouse/textures"
@@ -88,6 +90,7 @@ collections:
       - { label: "标签", name: "tags", widget: "string", required: false, hint: "多个标签请用逗号分隔，例如：资源,模型,插件" }
       - { label: "发布日期", name: "date", widget: "datetime" }
       - { label: "正文", name: "body", widget: "markdown" }
+
   - name: "warehouse-hdris"
     label: "仓库 - HDRIs"
     folder: "src/content/warehouse/hdris"
