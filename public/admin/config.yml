@@ -6,7 +6,7 @@ backend:
   # 启用GitHub登录
   auth_type: github
   # 可选：指定GitHub应用的客户端ID（如果使用自定义OAuth应用）
-  # auth_client_id: your-github-oauth-client-id
+ auth_client_id: your-github-oauth-client-id
 
 # 本地化配置
 local_backend: true
