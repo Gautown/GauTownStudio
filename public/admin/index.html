@@ -22,7 +22,8 @@
           config: {
             backend: {
               name: 'git-gateway',
-              branch: 'main'
+              branch: 'main',
+              site_domain: 'gautown.top'
             }
           }
         });
@@ -40,6 +41,11 @@
         
         // 自动初始化
         window.netlifyIdentity.init();
+      }
+      
+      // 如果用户已登录，重定向到管理页面
+      if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
+        document.location.href = "/admin/";
       }
     </script>
   </body>
