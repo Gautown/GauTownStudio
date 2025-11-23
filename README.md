@@ -6,7 +6,7 @@
 
 1. 安装依赖:
    ```bash
-   npm install
+   npm install --legacy-peer-deps
    ```
 
 2. 启动开发服务器:
@@ -15,7 +15,7 @@
    ```
 
 4. 访问网站: http://localhost:4321
-5. 访问管理后台: http://localhost:4322/admin.html
+5. 访问管理后台: http://localhost:4321/admin.html
 
 ## 本地开发
 
@@ -82,21 +82,41 @@
 
 ### 部署到 Cloudflare Pages
 
-本项目也支持部署到 Cloudflare Pages：
+本项目已完全支持部署到 Cloudflare Pages：
+
+#### 方法一：使用 Cloudflare Pages 控制台
 
 1. 在 Cloudflare Pages 控制台中创建新项目
 2. 连接到您的 GitHub 仓库
 3. 设置以下构建配置：
-   - 构建命令: `npm ci --legacy-peer-deps && npm run build`
+   - 构建命令: `npm install --legacy-peer-deps && npm run build`
    - 构建输出目录: `dist`
 4. 添加环境变量：
    - `NODE_VERSION`: `20.18.0`
    - `NPM_FLAGS`: `--legacy-peer-deps`
 5. 部署完成后，您的网站将可以通过 Cloudflare Pages 提供的 URL 访问
 
-您也可以使用 Wrangler CLI 进行部署：
+#### 方法二：使用 Wrangler CLI 进行部署
+
+1. 安装 Wrangler CLI（如果尚未安装）:
+   ```bash
+   npm install -g wrangler
+   ```
+
+2. 登录到 Cloudflare:
+   ```bash
+   wrangler login
+   ```
+
+3. 部署到 Cloudflare Pages:
+   ```bash
+   npm run pages:deploy
+   ```
+
+或者直接使用 Wrangler 命令:
 ```bash
-npm run cf:deploy
+npm run build
+wrangler pages deploy dist
 ```
 
 ## 故障排除
