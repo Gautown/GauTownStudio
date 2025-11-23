@@ -12,6 +12,26 @@
   <body>
     <!-- Netlify CMS will be injected here -->
     <script>
+      // 注册自定义媒体库组件以避免错误
+      CMS.registerMediaLibrary({
+        name: 'static',
+        init: () => ({
+          show: (options = {}) => {
+            console.log('Static media library show called with options:', options);
+            return Promise.resolve();
+          },
+          hide: () => {
+            console.log('Static media library hide called');
+            return Promise.resolve();
+          },
+          onClearControl: () => {
+            console.log('Static media library onClearControl called');
+            return Promise.resolve();
+          },
+          enableStandalone: () => false,
+        })
+      });
+      
       // 初始化 Netlify Identity Widget
       if (document.location.hostname === "localhost") {
         // 本地开发环境
@@ -24,6 +44,9 @@
               name: 'git-gateway',
               branch: 'main',
               site_domain: 'gautown.top'
+            },
+            media_library: {
+              name: 'static'
             }
           }
         });
@@ -53,16 +76,6 @@
         if (window.netlifyIdentity) {
           window.netlifyIdentity.init();
         }
-      });
-      
-      // 注册自定义媒体库组件以避免错误
-      CMS.registerMediaLibrary({
-        name: 'static',
-        init: () => ({
-          show: () => Promise.resolve(),
-          hide: () => Promise.resolve(),
-          enableStandalone: () => false,
-        })
       });
     </script>
   </body>

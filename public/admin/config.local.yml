@@ -5,12 +5,6 @@ backend:
   name: proxy
   proxy_url: http://localhost:8082/api/v1
 
-# 本地化配置
-locale: 'zh_Hans'
-logo_url: '/images/logo.png'
-display_url: 'http://localhost:4321'
-show_preview_links: true
-
 # 全局媒体文件夹设置
 media_folder: "public/images"
 public_folder: "/images"
@@ -18,8 +12,12 @@ public_folder: "/images"
 # 媒体库配置
 media_library:
   name: 'static'
-  config:
-    sidebar: true
+
+# 本地化配置
+locale: 'zh_Hans'
+logo_url: '/images/logo.png'
+display_url: 'http://localhost:4321'
+show_preview_links: true
 
 # 本地开发配置
 local_backend: true
