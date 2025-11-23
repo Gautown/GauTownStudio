@@ -27,6 +27,14 @@ development:
 # OAuth配置 - GitHub登录
 publish_mode: editorial_workflow
 
+# 身份验证提供者配置
+backend:
+  name: git-gateway
+  branch: main
+  repo: Gautown/GauTownStudio
+  site_domain: gautown.top
+  auth_endpoint: https://gautown.top/.netlify/identity
+
 collections:
   - name: "portfolio"
     label: "作品"
