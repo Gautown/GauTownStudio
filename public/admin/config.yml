@@ -3,6 +3,7 @@ backend:
   branch: main
   # GitHub仓库名称，格式为：用户名/仓库名
   repo: Gautown/GauTownStudio
+  site_domain: gautown.top
 
 # 本地化配置
 local_backend: true
