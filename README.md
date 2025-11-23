@@ -40,6 +40,7 @@
 - `public/admin/` - Decap CMS 配置
 - `src/styles/` - 自定义样式文件
 - `netlify.toml` - Netlify 部署配置
+- `wrangler.toml` - Cloudflare Pages 部署配置
 
 ## 环境变量配置
 
@@ -71,11 +72,32 @@
 
 ## 部署
 
+### 部署到 Netlify
+
 本项目配置为在 Netlify 上部署。使用 Decap CMS 需要配置 Netlify Identity 和 Git Gateway，
 详细信息请参考 [Decap CMS 官方文档](https://decapcms.org/docs/authentication-backends/)。
 
 构建项目请使用 `npm run build` 命令。
 启动服务 `npm run cms:dev:local-server`
+
+### 部署到 Cloudflare Pages
+
+本项目也支持部署到 Cloudflare Pages：
+
+1. 在 Cloudflare Pages 控制台中创建新项目
+2. 连接到您的 GitHub 仓库
+3. 设置以下构建配置：
+   - 构建命令: `npm ci --legacy-peer-deps && npm run build`
+   - 构建输出目录: `dist`
+4. 添加环境变量：
+   - `NODE_VERSION`: `20.18.0`
+   - `NPM_FLAGS`: `--legacy-peer-deps`
+5. 部署完成后，您的网站将可以通过 Cloudflare Pages 提供的 URL 访问
+
+您也可以使用 Wrangler CLI 进行部署：
+```bash
+npm run cf:deploy
+```
 
 ## 故障排除
 

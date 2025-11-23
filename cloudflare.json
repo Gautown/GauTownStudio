@@ -1,0 +1,40 @@
+{
+  "name": "gautown-studio",
+  "build": {
+    "command": "npm ci --legacy-peer-deps && npm run build",
+    "publish": "dist",
+    "environment": {
+      "NODE_VERSION": "20.18.0",
+      "NPM_FLAGS": "--legacy-peer-deps"
+    }
+  },
+  "routes": [
+    {
+      "pattern": "/admin/*",
+      "to": "/admin/index.html",
+      "status": 200
+    },
+    {
+      "pattern": "https://www.gautown.top/*",
+      "to": "https://gautown.top/:splat",
+      "status": 301
+    }
+  ],
+  "headers": {
+    "/admin/*": {
+      "Access-Control-Allow-Origin": "*"
+    },
+    "/*": {
+      "X-Frame-Options": "DENY",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "strict-origin-when-cross-origin"
+    },
+    "/admin/index.html": {
+      "Content-Security-Policy": "frame-ancestors 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com https://*.cloudflareworkers.com; object-src 'none'; connect-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com https://api.github.com; font-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; img-src 'self' data: https://*.cloudflare.com https://*.cloudflareworkers.com https://*.githubusercontent.com;"
+    },
+    "/admin/config.yml": {
+      "Content-Type": "application/yaml"
+    }
+  }
+}

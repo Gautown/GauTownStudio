@@ -1,0 +1,48 @@
+name = "gautown-studio"
+main = "./dist"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm ci --legacy-peer-deps && npm run build"
+publish = "dist"
+
+[vars]
+NODE_VERSION = "20.18.0"
+NPM_FLAGS = "--legacy-peer-deps"
+
+# 重定向规则
+[[redirects]]
+from = "/admin/*"
+to = "/admin/index.html"
+status = 200
+
+# 重定向www到主域名
+[[redirects]]
+from = "https://www.gautown.top/*"
+to = "https://gautown.top/:splat"
+status = 301
+
+# 头部信息
+[[headers]]
+for = "/admin/*"
+values = { "Access-Control-Allow-Origin" = "*" }
+
+[[headers]]
+for = "/*"
+values = {
+  "X-Frame-Options" = "DENY"
+  "X-XSS-Protection" = "1; mode=block"
+  "X-Content-Type-Options" = "nosniff"
+  "Referrer-Policy" = "strict-origin-when-cross-origin"
+}
+
+[[headers]]
+for = "/admin/index.html"
+values = {
+  "Content-Security-Policy" = "frame-ancestors 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com https://*.cloudflareworkers.com; object-src 'none'; connect-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com https://api.github.com; font-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; img-src 'self' data: https://*.cloudflare.com https://*.cloudflareworkers.com https://*.githubusercontent.com;"
+}
+
+# 确保YAML文件有正确的MIME类型
+[[headers]]
+for = "/admin/config.yml"
+values = { "Content-Type" = "application/yaml" }
