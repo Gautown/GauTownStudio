@@ -54,6 +54,16 @@
           window.netlifyIdentity.init();
         }
       });
+      
+      // 注册自定义媒体库组件以避免错误
+      CMS.registerMediaLibrary({
+        name: 'static',
+        init: () => ({
+          show: () => Promise.resolve(),
+          hide: () => Promise.resolve(),
+          enableStandalone: () => false,
+        })
+      });
     </script>
   </body>
 </html>

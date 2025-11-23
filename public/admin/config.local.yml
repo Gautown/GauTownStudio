@@ -18,6 +18,8 @@ public_folder: "/images"
 # 媒体库配置
 media_library:
   name: 'static'
+  config:
+    sidebar: true
 
 # 本地开发配置
 local_backend: true
