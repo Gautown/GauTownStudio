@@ -47,6 +47,13 @@
       if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
         document.location.href = "/admin/";
       }
+      
+      // 确保 Netlify Identity Widget 正确显示
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.init();
+        }
+      });
     </script>
   </body>
 </html>
