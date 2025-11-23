@@ -127,6 +127,7 @@ collections:
           - { label: "头部Logo", name: "logo", widget: "string" }
           - { label: "网站名称", name: "siteName", widget: "string" }
           - { label: "版权信息", name: "copyright", widget: "string" }
+          - { label: "Hero背景图片", name: "heroBackgroundImage", widget: "image", required: false, hint: "首页Hero区域的背景图片" }
           - label: "导航菜单"
             name: "navigation"
             widget: "list"
