@@ -11,8 +11,10 @@
     "cms:build": "astro build",
     "cms:dev:local": "astro dev --port 4321",
     "cms:dev:local-server": "decap-server",
-    "cf:build": "npm ci --legacy-peer-deps && npm run build",
-    "cf:deploy": "wrangler pages deploy"
+    "cf:build": "npm install --legacy-peer-deps && npm run build",
+    "cf:deploy": "wrangler pages deploy",
+    "pages:dev": "wrangler pages dev dist",
+    "pages:deploy": "npm run build && wrangler pages deploy dist"
   },
   "keywords": [
     "decap-cms",
