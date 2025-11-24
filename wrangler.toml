@@ -1,5 +1,6 @@
 name = "gautown-studio"
 compatibility_date = "2024-01-01"
+pages_build_output_dir = "./dist"
 
 [build]
 command = "npm install --legacy-peer-deps && npm run build"
@@ -28,17 +29,17 @@ values = { "Access-Control-Allow-Origin" = "*" }
 
 [[headers]]
 for = "/*"
-values = {
-  "X-Frame-Options" = "DENY"
-  "X-XSS-Protection" = "1; mode=block"
-  "X-Content-Type-Options" = "nosniff"
-  "Referrer-Policy" = "strict-origin-when-cross-origin"
+values = { 
+  "X-Frame-Options" = "DENY",
+  "X-XSS-Protection" = "1; mode=block",
+  "X-Content-Type-Options" = "nosniff",
+  "Referrer-Policy" = "strict-origin-when-cross-origin" 
 }
 
 [[headers]]
 for = "/admin/index.html"
-values = {
-  "Content-Security-Policy" = "frame-ancestors 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://*.cloudflareworkers.com; object-src 'none'; connect-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com https://api.github.com; font-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; img-src 'self' data: https://*.cloudflare.com https://*.cloudflareworkers.com https://*.githubusercontent.com;"
+values = { 
+  "Content-Security-Policy" = "frame-ancestors 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://*.cloudflareworkers.com; object-src 'none'; connect-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com https://api.github.com; font-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; img-src 'self' data: https://*.cloudflare.com https://*.cloudflareworkers.com https://*.githubusercontent.com;" 
 }
 
 # 确保YAML文件有正确的MIME类型
