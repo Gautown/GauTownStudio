@@ -39,7 +39,6 @@
 - `src/pages/` - Astro 页面文件
 - `public/admin/` - Decap CMS 配置
 - `src/styles/` - 自定义样式文件
-- `netlify.toml` - Netlify 部署配置
 - `wrangler.toml` - Cloudflare Pages 部署配置
 
 ## 环境变量配置
@@ -71,14 +70,6 @@
 - `src/styles/sidebar.css` - 固定侧边栏的样式
 
 ## 部署
-
-### 部署到 Netlify
-
-本项目配置为在 Netlify 上部署。使用 Decap CMS 需要配置 Netlify Identity 和 Git Gateway，
-详细信息请参考 [Decap CMS 官方文档](https://decapcms.org/docs/authentication-backends/)。
-
-构建项目请使用 `npm run build` 命令。
-启动服务 `npm run cms:dev:local-server`
 
 ### 部署到 Cloudflare Pages
 

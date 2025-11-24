@@ -4,13 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>内容管理系统</title>
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <link rel="stylesheet" href="./custom.css" />
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
-    <!-- Netlify CMS will be injected here -->
+    <!-- Decap CMS will be injected here -->
     <script>
       // 注册自定义媒体库组件以避免错误
       CMS.registerMediaLibrary({
@@ -32,7 +30,7 @@
         })
       });
       
-      // 初始化 Netlify Identity Widget
+      // 初始化 Decap CMS
       if (document.location.hostname === "localhost") {
         // 本地开发环境
         CMS.init();
@@ -51,32 +49,6 @@
           }
         });
       }
-      
-      // 初始化 Netlify Identity Widget
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-        
-        // 自动初始化
-        window.netlifyIdentity.init();
-      }
-      
-      // 如果用户已登录，重定向到管理页面
-      if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
-        document.location.href = "/admin/";
-      }
-      
-      // 确保 Netlify Identity Widget 正确显示
-      document.addEventListener('DOMContentLoaded', function() {
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.init();
-        }
-      });
     </script>
   </body>
 </html>
