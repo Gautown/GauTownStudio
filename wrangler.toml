@@ -29,7 +29,7 @@ values = { "Access-Control-Allow-Origin" = "*" }
 
 [[headers]]
 for = "/*"
-values = { 
+values = {
   "X-Frame-Options" = "DENY",
   "X-XSS-Protection" = "1; mode=block",
   "X-Content-Type-Options" = "nosniff",
@@ -38,7 +38,7 @@ values = {
 
 [[headers]]
 for = "/admin/index.html"
-values = { 
+values = {
   "Content-Security-Policy" = "frame-ancestors 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://*.cloudflareworkers.com; object-src 'none'; connect-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com https://api.github.com; font-src 'self' https://*.cloudflare.com https://*.cloudflareworkers.com; img-src 'self' data: https://*.cloudflare.com https://*.cloudflareworkers.com https://*.githubusercontent.com;" 
 }
 
